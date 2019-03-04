@@ -23,6 +23,14 @@ timezone: Europe/Copenhagen
 plugins:
   - jekyll-sitemap
 
+exclude: [
+    "Gemfile",
+    "Gemfile.lock",
+    "gulpfile.js",
+    "node_modules",
+    "package.json"
+    ]
+
 # Custom vars
 current_version:  3.3.7
 github:
