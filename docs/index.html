@@ -1,0 +1,103 @@
+---
+layout: home
+title: ku.dk &middot; Københavns Universitet &middot; Customized Bootstrap template
+---
+<main id="content" tabindex="-1">
+  <div class="container ku-branding">
+    <div class="ku-branding-line">
+      <div class="ku-branding-logo">
+        <a title="Forsiden af ku.dk" href="{{ site.baseurl }}/">
+          <img class="logo-img" src="{{ site.baseurl }}/images/branding/faelles.svg" alt="Københavns Universitet">
+        </a>
+      </div>
+      <div class="ku-branding-text">
+        <div class="ku-branding-text-major">Design guidelines</div>
+        <div class="ku-branding-text-sub">University of Copenhagen</div>
+      </div>
+    </div>
+  </div>
+  <div class="container main-area" id="main-area">
+    <div class="row">
+      <div class="col-xs-4 col-md-3 hidden-xs ku-leftmenu" role="menu">
+        <div class="navmenu navmenu-default navmenu-fixed-left offcanvas-sm">
+          <div class="ku-navbar-header">
+            <a href="/">University of Copenhagen</a>
+          </div>
+          <ul id="leftmenu" class="nav exclude">
+            <li{% if page.slug=="getting-started" %} class="active" {% endif %}>
+            <a href="{{ site.baseurl }}/getting-started{% if site.github %}.html{% endif %}">Getting started</a>
+            </li>
+            <li{% if page.slug=="css" %} class="active" {% endif %}>
+            <a href="{{ site.baseurl }}/css{% if site.github %}.html{% endif %}">CSS</a>
+            </li>
+            <li{% if page.slug=="components" %} class="active" {% endif %}>
+            <a href="{{ site.baseurl }}/components{% if site.github %}.html{% endif %}">Components</a>
+            </li>
+            <li{% if page.slug=="js" %} class="active" {% endif %}>
+            <a href="{{ site.baseurl }}/javascript{% if site.github %}.html{% endif %}">JavaScript</a>
+            </li>
+            <li{% if page.slug=="examples" %} class="active" {% endif %}>
+            <a href="{{ site.baseurl }}/examples/ku-default/">KU templates</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-xs-8 col-md-9 main-content">
+        <div class="row">
+          <div class="col-sm-12">
+            <h1>Design guidelines</h1>
+            <h2>Introduction</h2>
+            <p>This design styleguide is meant for developers and project managers who will work on systems and interfaces related to University of Copenhagen.</p>
+            <p>Hence, the purpose of this guide is to demonstrate general design principles as well as the formatting of html elements, in order to maintain a coherent visual identity.</p>
+            <p>Following these guidelines is important in order to ensure a great user experience across all devices and screen sizes, while maintaining a consistent look and feel.</p>
+            <h2>Design rules</h2>
+            <p>This style guide is based on <a href="http://getbootstrap.com/docs/3.3/" target="_blank">Bootstrap v{% if site.github %}3.3.7{% else %}{{ site.current_version }}{% endif %}</a>. All solutions must be created to integrate seamlessly with these design principles:</p>
+            <ul>
+              <li>Full documentation and source code at GitHub <a href="https://github.com/ku-kom/bootstrap"> can be found here</a>.</li>
+              <li>Page templates for University of Copenhagen <a href="{{ site.baseurl }}/examples/ku-default">can be found here</a>.</li>
+              <li>
+                <p>CSS and javaScript: All external solutions must link to the same masters:</p>
+                <p>CSS: <code>https://cms.ku.dk/bootstrap/dist/css/bootstrap.min.css</code></p>
+                <p>JavaScript: <code>https://cms.ku.dk/bootstrap/dist/js/bootstrap.min.js</code></p>
+              </li>
+              <li>
+                HTML must be valid html5 and well-formed.
+              </li>
+              <li>
+                Accessibility: Solutions are to apply and observe the rules of accessibility provided by <a href="http://www.w3.org/TR/WCAG/">WCAG 2.0 level AA</a>. it is allowed to use <a href="http://www.w3.org/TR/wai-aria/">WAI-ARIA</a>.
+              </li>
+            </ul>
+          </div>
+          <div class="divider"></div>
+          <div class="col-xs-12 col-sm-6">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h2 class="panel-title">This design guide</h2>
+              </div>
+              <div class="panel-body">
+                <p>This design guide is under development. Changes may be made to the stylesheet on a regular basis, but the html code is stable, and will not be altered unless errors appear.</p>
+                <p>Last modified {{ site.time | date: "%B %d, %Y" }}.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-6">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h2 class="panel-title">Contact</h2>
+              </div>
+              <div class="panel-body"><p>Questions regarding this design styleguide can be directed to:</p>
+                <address>
+                <a href="http://www.kommunikation.ku.dk">Kommunikation</a><br>
+                <a href="http://www.ku.dk/">Københavns Universitet</a><br>
+                E-mail: <a href="mailto:FA-webredaktor@adm.ku.dk">Web team</a><br>
+                Nørregade 10, Postboks 2177<br>1017 København K<br>
+              </address>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% include local-footer.html %}
+</main>

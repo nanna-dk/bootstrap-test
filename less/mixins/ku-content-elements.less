@@ -1,0 +1,43 @@
+// KU custom elements
+// Used different places - added as mixins for easy maintainance
+
+.boxtop() {
+  // align-self: flex-end;
+  line-height: 1.25;
+  letter-spacing: 0.6px;
+  color: @panel-default-header-text;
+  min-height: 16px;
+  font-weight: 600;
+  padding: @panel-bokstop-heading-padding;
+}
+
+.nyhedsoverskrift() {
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: 0.6px;
+  font-weight: 600;
+}
+
+.image-fadeOut() {
+  filter: brightness(90%) blur(0);
+}
+
+.image-fadeIn() {
+  filter: brightness(100%) blur(0);
+}
+
+.img-fix-for-ie() {
+  // IE doesn't understand flex and object-cover, so we have to give special treatment...  #?$¤!%...
+  min-height: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%) translate3d(0px, 0px, 0px);
+  backface-visibility: hidden;
+  -ms-interpolation-mode: bicubic;
+}
+
+.img-fix-for-ie-size2() {
+  height: 100%;
+  max-width: none;
+}

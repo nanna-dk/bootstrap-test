@@ -1,0 +1,106 @@
+.non-responsive {
+  min-width: 1070px;
+  overflow: auto;
+}
+
+.non-responsive .container, .non-responsive main {
+  max-width: none !important;
+  width: 1070px !important;
+}
+
+.non-responsive .main-content>.row>.col-md-6 {
+  width: 50% !important;
+  float: left;
+}
+
+.non-responsive .right-side {
+  width: 25%!important;
+}
+
+.non-responsive .ku-leftmenu {
+  width: 25%!important;
+}
+
+.non-responsive .main-content {
+  width: 50%;
+}
+
+.non-responsive #globalfooter .footercolumn:first-child h3:nth-of-type(2) {
+    display: none !important;
+}
+
+.right-side [class^="col-"]:first-child .panel-default>.panel-heading {
+  border-top: 0;
+}
+
+.non-responsive .visible-xs-inline, .non-responsive .visible-sm-inline {
+  display: inline !important;
+}
+
+.non-responsive .visible-xs-inline-block, .non-responsive .visible-sm-inline-block {
+  display: inline-block !important;
+}
+
+.non-responsive .hidden-xs, .non-responsive .hidden-sm {
+  display: block !important;
+}
+
+.non-responsive .container .navbar-header, .non-responsive .container .navbar-collapse {
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.non-responsive .navbar-header {
+  float: left;
+}
+
+.non-responsive .navbar-collapse {
+  display: block !important;
+  height: auto !important;
+  padding-bottom: 0;
+  overflow: visible !important;
+}
+
+.non-responsive .navbar-toggle {
+  display: none;
+}
+
+.non-responsive .navbar-collapse {
+  border-top: 0;
+}
+
+.non-responsive .navbar-brand {
+  margin-left: -15px;
+}
+
+.non-responsive .navbar-nav {
+  float: left;
+  margin: 0;
+}
+
+.non-responsive .navbar-nav>li {
+  float: left;
+}
+
+.non-responsive .navbar-nav.navbar-right {
+  float: right;
+}
+
+.non-responsive .navbar-default .navbar-nav .open .dropdown-menu>li>a {
+  color: #333;
+}
+
+.non-responsive .navbar .navbar-nav .open .dropdown-menu>li>a:hover, .non-responsive .navbar .navbar-nav .open .dropdown-menu>li>a:focus, .non-responsive .navbar .navbar-nav .open .dropdown-menu>.active>a, .non-responsive .navbar .navbar-nav .open .dropdown-menu>.active>a:hover, .non-responsive .navbar .navbar-nav .open .dropdown-menu>.active>a:focus {
+  color: #fff !important;
+  background-color: #428bca !important;
+}
+
+.non-responsive .navbar .navbar-nav .open .dropdown-menu>.disabled>a, .non-responsive .navbar .navbar-nav .open .dropdown-menu>.disabled>a:hover, .non-responsive .navbar .navbar-nav .open .dropdown-menu>.disabled>a:focus {
+  color: #999 !important;
+  background-color: transparent !important;
+}
+
+.non-responsive #globalfooter {
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #777), color-stop(25%, #868686), color-stop(50%, #8e8d8d), color-stop(80%, #888), to(grey));
+  background: linear-gradient(to bottom, #777 0, #868686 25%, #8e8d8d 50%, #888 80%, grey 100%);
+}

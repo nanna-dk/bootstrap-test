@@ -1,0 +1,452 @@
+//
+// Panels
+// --------------------------------------------------
+// Base class
+
+.panel {
+  //margin-bottom: @line-height-computed;
+  background-color: @panel-bg;
+  //border: 1px solid transparent;
+  //border-radius: @panel-border-radius;
+  // KU:
+  // & + .panel {
+  //   margin-top: @grid-gutter-height;
+  // }
+}
+// Panel contents
+
+.panel-body {
+  padding: @panel-body-padding;
+  &:extend(.clearfix all);
+
+  & > ul {
+    &:first-child {
+      margin-top: 10px;
+    }
+  }
+
+  ul:not([class]) {
+    // Target lists without any class attribute
+    li {
+      padding-top: 3px;
+      padding-bottom: 3px;
+    }
+  }
+}
+// Optional heading
+
+.panel-heading {
+  padding: @panel-heading-padding;
+  border-bottom: 1px solid transparent;
+  //.border-top-radius((@panel-border-radius - 1));
+  > .dropdown .dropdown-toggle {
+    color: inherit;
+  }
+}
+// Within heading, strip any `h*` tag of its default margins for spacing.
+
+.panel-title {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 18px;
+  @media (min-width: @screen-md) {
+    font-size: 16px;
+  }
+  font-weight: 600;
+  letter-spacing: 0.25px;
+  color: inherit;
+
+  > .small > a,
+   > a,
+   > small,
+   > small > a,
+  > .small {
+    color: inherit;
+  }
+}
+// Optional footer (stays gray in every modifier class)
+
+.panel-footer {
+  padding: @panel-footer-padding;
+  background-color: @panel-footer-bg;
+  border-top: 1px solid @panel-inner-border;
+  // KU:
+  border-bottom: 1px solid @panel-inner-border;
+  //.border-bottom-radius((@panel-border-radius - 1));
+}
+// List groups in panels
+//
+// By default, space out list group content from panel headings to account for
+// any kind of custom content between the two.
+
+.panel {
+  > .list-group,
+  > .panel-collapse > .list-group {
+    margin-bottom: 0;
+
+    .list-group-item {
+      border-width: 1px 0;
+      //border-radius: 0;
+    }
+    // Add border top radius for first one
+    &:first-child {
+      .list-group-item:first-child {
+        border-top: 0;
+        //.border-top-radius((@panel-border-radius - 1));
+      }
+    }
+    // Add border bottom radius for last one
+    &:last-child {
+      .list-group-item:last-child {
+        border-bottom: 0;
+        //.border-bottom-radius((@panel-border-radius - 1));
+      }
+    }
+  }
+
+  > .panel-heading + .panel-collapse > .list-group {
+    .list-group-item:first-child {
+      .border-top-radius(0);
+    }
+  }
+}
+// Collapse space between when there's no additional content.
+
+.panel-heading + .list-group {
+  .list-group-item:first-child {
+    border-top-width: 0;
+  }
+}
+
+.list-group + .panel-footer {
+  border-top-width: 0;
+}
+// Tables in panels
+//
+// Place a non-bordered `.table` within a panel (not within a `.panel-body`) and
+// watch it go full width.
+
+.panel {
+  > .table,
+   > .table-responsive > .table,
+  > .panel-collapse > .table {
+    margin-bottom: 0;
+
+    caption {
+      padding-left: @panel-body-padding;
+      padding-right: @panel-body-padding;
+    }
+  }
+  // Add border top radius for first one
+  // > .table:first-child,
+  // > .table-responsive:first-child > .table:first-child {
+  //   .border-top-radius((@panel-border-radius - 1));
+  //
+  //   > thead:first-child,
+  //   > tbody:first-child {
+  //     > tr:first-child {
+  //       border-top-left-radius: (@panel-border-radius - 1);
+  //       border-top-right-radius: (@panel-border-radius - 1);
+  //
+  //       td:first-child,
+  //       th:first-child {
+  //         border-top-left-radius: (@panel-border-radius - 1);
+  //       }
+  //       td:last-child,
+  //       th:last-child {
+  //         border-top-right-radius: (@panel-border-radius - 1);
+  //       }
+  //     }
+  //   }
+  // }
+  // Add border bottom radius for last one
+  // > .table:last-child,
+  // > .table-responsive:last-child > .table:last-child {
+  //   .border-bottom-radius((@panel-border-radius - 1));
+  //
+  //   > tbody:last-child,
+  //   > tfoot:last-child {
+  //     > tr:last-child {
+  //       border-bottom-left-radius: (@panel-border-radius - 1);
+  //       border-bottom-right-radius: (@panel-border-radius - 1);
+  //
+  //       td:first-child,
+  //       th:first-child {
+  //         border-bottom-left-radius: (@panel-border-radius - 1);
+  //       }
+  //       td:last-child,
+  //       th:last-child {
+  //         border-bottom-right-radius: (@panel-border-radius - 1);
+  //       }
+  //     }
+  //   }
+  // }
+  //  > .panel-body + .table-responsive,
+  //  > .table + .panel-body,
+  //  > .table-responsive + .panel-body,
+  // > .panel-body + .table {
+  //   border-top: 1px solid @table-border-color;
+  // }
+  //
+  //  > .table > tbody:first-child > tr:first-child td,
+  // > .table > tbody:first-child > tr:first-child th {
+  //   border-top: 0;
+  // }
+  //
+  //  > .table-responsive > .table-bordered,
+  // > .table-bordered {
+  //   border: 0;
+  //
+  //    > tbody,
+  //    > thead,
+  //   > tfoot {
+  //     > tr {
+  //        > td:first-child,
+  //       > th:first-child {
+  //         border-left: 0;
+  //       }
+  //
+  //        > td:last-child,
+  //       > th:last-child {
+  //         border-right: 0;
+  //       }
+  //     }
+  //   }
+  //
+  //    > tbody,
+  //   > thead {
+  //     > tr:first-child {
+  //        > th,
+  //       > td {
+  //         border-bottom: 0;
+  //       }
+  //     }
+  //   }
+  //
+  //    > tfoot,
+  //   > tbody {
+  //     > tr:last-child {
+  //        > th,
+  //       > td {
+  //         border-bottom: 0;
+  //       }
+  //     }
+  //   }
+  // }
+  > .table-responsive {
+    border: 0;
+    margin-bottom: 0;
+  }
+}
+// Collapsible panels (aka, accordion)
+//
+// Wrap a series of panels in `.panel-group` to turn them into an accordion with
+// the help of our collapse JavaScript plugin.
+
+.panel-group {
+  margin-bottom: @line-height-computed;
+
+  .panel {
+    margin-bottom: 0;
+
+    &:first-child {
+      border-top-left-radius: @panel-border-radius;
+      border-top-right-radius: @panel-border-radius;
+
+      > .panel-heading {
+        border-top-left-radius: inherit;
+        border-top-right-radius: inherit;
+      }
+    }
+
+    &:last-child {
+      border-bottom-left-radius: @panel-border-radius;
+      border-bottom-right-radius: @panel-border-radius;
+
+      > .panel-heading {
+        border-bottom-left-radius: inherit;
+        border-bottom-right-radius: inherit;
+      }
+    }
+  }
+
+  .panel-heading {
+    border-top: 1px solid @semi-white;
+    border-bottom: 1px solid @panel-default-border;
+
+    &:hover {
+      background-color: darken(@panel-bg, 7%);
+    }
+
+    + .panel-collapse > .list-group,
+    + .panel-collapse > .panel-body {
+      border-top: 1px solid @panel-inner-border;
+    }
+  }
+
+  .panel-footer {
+    border-top: 0;
+
+    + .panel-collapse .panel-body {
+      border-bottom: 1px solid @panel-inner-border;
+    }
+  }
+}
+// Contextual variations
+// KU bokstoppe
+
+.panel-default {
+  & > .panel-heading {
+    overflow: hidden;
+    font-weight: 600;
+    padding: 0;
+    // min-height: 57px;
+    // display: flex;
+    & > .panel-title {
+      .boxtop();
+    }
+    // KU
+    &.hidden {
+      display: none;
+
+      + .panel-body {
+        border-top: 0;
+      }
+    }
+  }
+
+  & > .panel-body {
+    padding: 1px 0 0;
+    border-top: 1px solid @ku-red;
+
+    .theme-samf & {
+      border-top: 1px solid @samf;
+    }
+
+    .theme-hum & {
+      border-top: 1px solid @hum;
+    }
+
+    .theme-science & {
+      border-top: 1px solid @science;
+    }
+
+    .theme-sund & {
+      border-top: 1px solid @sund;
+    }
+
+    .theme-jur & {
+      border-top: 1px solid @jura;
+    }
+
+    .theme-teo & {
+      border-top: 1px solid @teol;
+    }
+  }
+}
+
+.panel-primary {
+  .panel-variant(@panel-primary-border; @panel-primary-text; @panel-primary-heading-bg; @panel-primary-border);
+}
+
+.panel-success {
+  .panel-variant(@panel-success-border; @panel-success-text; @panel-success-heading-bg; @panel-success-border);
+}
+
+.panel-info {
+  .panel-variant(@panel-info-border; @panel-info-text; @panel-info-heading-bg; @panel-info-border);
+}
+
+.panel-warning {
+  .panel-variant(@panel-warning-border; @panel-warning-text; @panel-warning-heading-bg; @panel-warning-border);
+}
+
+.panel-danger {
+  .panel-variant(@panel-danger-border; @panel-danger-text; @panel-danger-heading-bg; @panel-danger-border);
+}
+
+.panel-accordion {
+  border: 1px solid @panel-accordion-border;
+
+  & > .panel-heading {
+    background-color: @panel-accordion-heading-bg;
+    padding: 0 30px 0 0;
+    position: relative;
+    border: 0;
+
+    .panel-title {
+      font-size: 16px;
+      @media (min-width: @screen-md) {
+        font-size: 14.4px;
+      }
+      line-height: 20px;
+
+      a {
+        display: block;
+        padding: 8px 0 10px 10px;
+        outline: none;
+
+        &:before {
+          .glyphicon;
+          content: "\002b";
+          font-size: 12px;
+          color: @gray-light;
+          position: absolute;
+          top: 12px;
+          right: 7px;
+          width: 20px;
+          overflow: hidden;
+        }
+
+        &:not(.collapsed) {
+          &:before {
+            content: "\2212";
+            right: 8px;
+          }
+        }
+      }
+    }
+
+    + .panel-collapse {
+      border-top: 0;
+
+      .panel-body {
+        padding-top: 0;
+        padding-bottom: 15px;
+        border-top: 0;
+
+        p {
+          &:last-child {
+            margin-bottom: 0;
+          }
+        }
+      }
+    }
+    // Open accordion
+    &.open {
+      background-color: @white-color;
+
+      .panel-title {
+        a {
+          &:before {
+            content: "\2212";
+            right: 8px;
+          }
+        }
+      }
+    }
+  }
+
+  .panel-body {
+    padding: 10px;
+  }
+
+  .panel-collapse {
+    border-top: 1px solid @semi-white;
+  }
+
+  + .panel-accordion,
+  ~ .panel-accordion {
+    margin-top: 4px;
+  }
+}

@@ -1,0 +1,272 @@
+//
+// KU mobile menu
+// --------------------------------------------------
+/* Media queries */
+@media (min-width: @screen-sm) {
+  #mobileleftmenu {
+    display: none;
+  }
+  .mm-page {
+    // Keep flexbox working after Mmenu is injected
+    height: 100%;
+  }
+}
+/* KU theme colors for jQuery MMenu */
+#mobileleftmenu {
+  //background-color: @white-color;
+  color: @text-color;
+
+  li {
+    &.navbar_mmenu {
+      background-color: @white-color;
+      color: @text-color;
+    }
+    // Contains class that starts with...
+    &[class*="local"] {
+      // Faculty colors for sublevel 1
+      background: @ku-red;
+      color: @white-color;
+      border-top: 1px solid darken(@ku-red, 5%);
+
+      .theme-samf & {
+        background: @samf;
+        border-top: 1px solid darken(@samf, 5%);
+      }
+
+      .theme-hum & {
+        background: @hum;
+        border-top: 1px solid darken(@hum, 5%);
+      }
+
+      .theme-science & {
+        background: @science;
+        border-top: 1px solid darken(@science, 5%);
+      }
+
+      .theme-sund & {
+        background: @sund;
+        border-top: 1px solid darken(@sund, 5%);
+      }
+
+      .theme-jur & {
+        background: @jura;
+        border-top: 1px solid darken(@jura, 5%);
+      }
+
+      .theme-teo & {
+        background: @teol;
+        border-top: 1px solid darken(@teol, 5%);
+      }
+
+      &.mm-selected > a:not(.mm-btn_next) {
+        // selected view
+        font-weight: 600;
+        background: darken(@ku-red, 6%);
+
+        .theme-samf & {
+          background: darken(@samf, 6%);
+        }
+
+        .theme-hum & {
+          background: darken(@hum, 6%);
+        }
+
+        .theme-science & {
+          background: darken(@science, 6%);
+        }
+
+        .theme-sund & {
+          background: darken(@sund, 6%);
+        }
+
+        .theme-jur & {
+          background: darken(@jura, 6%);
+        }
+
+        .theme-teo & {
+          background: darken(@teol, 6%);
+        }
+      }
+
+      > .mm-panel {
+        background-color: lighten(@gray-light, 40%);
+        color: @text-color;
+      }
+
+      &::after {
+        border: none;
+      }
+    }
+  }
+
+  .local1_mmenu {
+    &:first-of-type {
+      border-top: 0;
+    }
+  }
+
+  .mm-navbar {
+    &:first-of-type {
+      padding: 0;
+    }
+  }
+
+  .mm-navbar__title {
+    text-align: left;
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: @ku-red;
+    color: @white-color;
+    font-size: larger;
+    border-bottom: solid 1px lighten(@ku-red, 7%);
+
+    .theme-samf & {
+      background-color: @samf;
+      border-bottom: 1px solid lighten(@samf, 7%);
+    }
+
+    .theme-hum & {
+      background-color: @hum;
+      border-bottom: 1px solid lighten(@hum, 7%);
+    }
+
+    .theme-science & {
+      background-color: @science;
+      border-bottom: 1px solid lighten(@science, 7%);
+    }
+
+    .theme-sund & {
+      background-color: @sund;
+      border-bottom: 1px solid lighten(@sund, 7%);
+    }
+
+    .theme-jur & {
+      background-color: @jura;
+      border-bottom: 1px solid lighten(@jura, 7%);
+    }
+
+    .theme-teo & {
+      background-color: @teol;
+      border-bottom: 1px solid lighten(@teol, 7%);
+    }
+  }
+
+  .mm-navbars-top {
+    border: 0;
+  }
+
+  .navbar-form {
+    margin: 0;
+    padding: 0;
+    border: none;
+    box-shadow: none;
+  }
+  // Mmenu overrides
+  .mm-panels {
+    top: 40px;
+  }
+  // Use KU Arrows
+  .mm-listview li {
+    .mm-btn_next {
+      &::after {
+        .icon;
+        position: absolute;
+        content: @icon-arrow;
+        color: @text-color;
+        border: 0;
+        transform: rotate(0);
+        right: 20px;
+      }
+    }
+    // Opened
+    &.mm-listitem_opened {
+      > .mm-btn_next {
+        &::after {
+          transform: rotate(90deg);
+        }
+      }
+      // Sublevels
+      .mm-listview {
+        > .mm-btn_next {
+          &::after {
+            transform: rotate(0);
+          }
+        }
+        // Opened
+        .mm-listitem_opened {
+          > .mm-btn_next {
+            &::after {
+              transform: rotate(90deg);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .mm-listview {
+    > .local1_mmenu,
+    > .local2_mmenu {
+      > .mm-btn_next {
+        &::after {
+          color: @white-color;
+        }
+      }
+    }
+  }
+
+  .search-placeholder {
+    padding: 5px 15px 5px 5px;
+    background-color: @gray-lighter;
+
+    .dropdown-menu {
+      margin-top: 0;
+      top: 100%;
+      border-top: 0;
+      right: 15px;
+      font-size: @font-size-large;
+
+      li {
+        padding: 2px 15px;
+
+        &+ li {
+          margin-top: 2px;
+        }
+      }
+    }
+
+    .global-search-submit {
+      margin-left: -2px;
+    }
+  }
+
+  .mm-menu .mm-navbar > *,
+  .mm-menu .mm-navbar a {
+    color: inherit;
+  }
+
+  .navbar_mmenu {
+    &.mm-listitem_opened {
+      & > a:not(.mm-btn_next) {
+        font-weight: 700;
+      }
+    }
+  }
+
+  ul.nyheder {
+    li {
+      & > a {
+        padding: 10px 12px;
+      }
+    }
+
+    img {
+      width: 55px;
+      height: 55px;
+    }
+
+    .mm-btn_next {
+      display: none;
+    }
+  }
+}

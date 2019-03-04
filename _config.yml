@@ -1,0 +1,29 @@
+title: University of Copenhagen website branding
+author: Communications, University of Copenghagen
+name: Nanna Ellegaard (nanna-dk)
+
+# Dependencies
+markdown:         kramdown
+highlighter:      rouge
+
+# Permalinks
+permalink:        pretty
+
+# Server
+source:           docs
+destination:      _gh_pages
+host:             localhost
+port:             9001
+url:              https://ku-kom.github.io
+baseurl:          /bootstrap
+encoding:         UTF-8
+
+timezone: Europe/Copenhagen
+
+plugins:
+  - jekyll-sitemap
+
+# Custom vars
+current_version:  3.3.7
+github:
+repo:             https://github.com/ku-kom/bootstrap

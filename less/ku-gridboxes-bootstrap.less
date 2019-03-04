@@ -1,0 +1,1108 @@
+@import "variables.less";
+@import "mixins.less"; // KU custom grid box styling
+// NEL:
+// This code was originally made for old Obvius page templates.
+// Please refer to the ku-gridboxes-bootstrap.less for gridboxes in Bootstrap templates.
+// --------------------------------------------------
+// Grid box styles
+// ------------------
+// outlined: with border color
+// full: with full background color
+// text-top: text-bar at the top
+// text-down: text-bar at the bottom
+// text-over: overlays content
+
+.gridbox {
+  width: 100%;
+  position: relative;
+  font-size: @font-size-base;
+  line-height: @line-height-small;
+  border-radius: 2px;
+  display: flex;
+  flex-direction: column;
+
+  &:hover {
+    img {
+      .image-fadeOut();
+    }
+  }
+
+  &.subcolor_5 {
+    background: @ku-gray;
+
+    &.text-down {
+      .header {
+        background: fade(@ku-gray, 90%);
+        color: @ku-gridbox-text;
+      }
+    }
+
+    .header {
+      background: @ku-gray;
+      color: @ku-gridbox-text;
+    }
+
+    &.outlined {
+      border: 1px solid @gray-dark;
+      color: @ku-gridbox-text;
+
+      &::before {
+        color: @ku-gridbox-text;
+      }
+
+      &.with-img {
+        &:hover {
+          background: @ku-gray-hover;
+        }
+      }
+    }
+
+    &.full {
+      color: @ku-gridbox-text;
+
+      &:hover {
+        background: @ku-gray-hover;
+      }
+
+      .header {
+        color: @ku-gridbox-text;
+      }
+    }
+
+    &.text-down {
+      &:hover {
+        background: @ku-gray-hover;
+      }
+    }
+
+    &::before {
+      color: @ku-gridbox-text;
+    }
+
+    .text {
+      color: @ku-gridbox-text;
+    }
+  }
+
+  &.subcolor_6 {
+    background: @white-color;
+
+    .header {
+      background: fade(@white-color, 90%);
+      color: @ku-gridbox-text;
+    }
+
+    &.text-top {
+      .header {
+        background: @white-color;
+        color: @ku-gridbox-text;
+      }
+    }
+
+    &.outlined {
+      border: 1px solid @gray-dark;
+      color: @ku-gridbox-text;
+
+      &:hover {
+        background: @white-color-hover;
+      }
+
+      &.with-img {
+        &:hover {
+          border: 1px solid @gray-dark;
+        }
+      }
+    }
+
+    &.full {
+      background: @white-color;
+      color: @ku-gridbox-text;
+
+      .header {
+        color: @ku-gridbox-text;
+      }
+
+      &::before {
+        color: @ku-gridbox-text;
+      }
+
+      &:hover {
+        background: @white-color-hover;
+      }
+    }
+
+    &.text-down {
+      &:hover {
+        background: @white-color-hover;
+      }
+
+      &:not(.with-img) {
+        border: 1px solid @gray-dark;
+      }
+    }
+
+    &::before {
+      color: @ku-gridbox-text;
+    }
+
+    .text {
+      color: @ku-gridbox-text;
+    }
+  }
+
+  &.subcolor_7 {
+    background: @brown;
+    color: @white-color;
+
+    .header {
+      background: fade(@brown, 83%);
+      color: @white-color;
+    }
+
+    &.text-top {
+      .header {
+        background: @brown;
+        color: @white-color;
+      }
+    }
+
+    &.outlined {
+      border: 1px solid @brown;
+      color: @ku-gridbox-text;
+
+      &:hover {
+        border: 1px solid @brown-hover;
+      }
+
+      &.with-img {
+        &:hover {
+          background: @ku-gray-hover;
+          border: 1px solid @brown-hover;
+        }
+      }
+
+      &::before {
+        color: @brown;
+      }
+    }
+
+    &.full {
+      background: @brown;
+      color: @white-color;
+
+      .header {
+        color: @white-color;
+      }
+
+      &:hover {
+        background: @brown-hover;
+      }
+    }
+
+    &.text-down {
+      &:hover {
+        background: @brown-hover;
+      }
+    }
+
+    &::before {
+      color: @white-color;
+    }
+  }
+
+  .box1 {
+    z-index: 4;
+    order: 1;
+    flex: 0 1 auto;
+    position: relative;
+    overflow: hidden;
+
+    .header {
+      color: inherit;
+      font-size: 14.4px;
+      text-transform: uppercase;
+      padding: 8px 18px 8px 10px;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+    }
+
+    .text {
+      font-size: 13px;
+    }
+  }
+
+  .box2 {
+    padding: 5px @padding10 @padding10;
+    order: 2;
+    flex: 1 1 auto;
+  }
+  // Add an arrow to the box
+  &::before {
+    display: inline-block;
+    font-family: @custom-icon-font-family-name;
+    content: "\61";
+    text-transform: none;
+    font-size: 12px;
+    bottom: 9px;
+    right: @margin10;
+    position: absolute;
+    z-index: 5;
+  }
+  // Hide arrow
+  &.no-arrow {
+    &::before {
+      display: none;
+    }
+  }
+
+  &.with-img {
+    // Boxes with img
+    .box2 {
+      display: flex;
+      justify-content: center;
+      position: relative;
+      padding: 0 !important;
+      overflow: hidden;
+
+      img {
+        // Img inside the box adjusted by height and centered
+        flex: none;
+        display: block;
+        // position: absolute;
+        // top: 51%;
+        // left: 50%;
+        // max-height: 100%;
+        // max-width: none;
+        // transform: translateY(-51%) translateX(-50%) translate3d(0,0,0);
+        -ms-interpolation-mode: bicubic;
+        object-fit: cover;
+        backface-visibility: hidden;
+        .image-fadeIn();
+      }
+    }
+    // Position image left
+    // &.img-left {
+    //   img {
+    //     position: absolute;
+    //     left: 0!important;
+    //     transform: translateY(-50%) translateX(0) translate3d(0,0,0)!important;
+    //   }
+    // }
+    // Position image right
+    // &.img-right {
+    //   img {
+    //     position: absolute;
+    //     left: auto!important;
+    //     right: 0;
+    //     transform: translateY(-50%) translateX(0) translate3d(0,0,0)!important;
+    //   }
+    // }
+  }
+
+  &:not(.with-img) {
+    .box1 {
+      flex: 1 1 auto;
+
+      .header {
+        background: transparent;
+        color: inherit;
+      }
+    }
+
+    .box2 {
+      display: none;
+    }
+  }
+  // Videos
+  &.with-iframe {
+    background: @ku-gray;
+    color: initial!important;
+
+    &::before {
+      display: none;
+    }
+
+    .header {
+      border-right: 5px solid transparent;
+      color: @gray-dark;
+    }
+  }
+  // Boxes with the title at the top
+  &.text-top {
+    .box1 {
+      order: 1;
+    }
+
+    .box2 {
+      order: 2;
+    }
+
+    &::before {
+      top: @padding10;
+      bottom: auto;
+    }
+  }
+  // Boxes with the title at the bottom
+  &.text-down {
+    .box1 {
+      order: 2;
+    }
+
+    .box2 {
+      order: 1;
+    }
+  }
+  // Boxes with the text above the content
+  &.text-over {
+    .header {
+      position: relative;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      color: inherit;
+    }
+  }
+
+  &.full {
+    .header {
+      word-wrap: break-word;
+    }
+  }
+
+  &.outlined {
+    background: @white-color!important;
+
+    &:hover {
+      background: @ku-gray-hover!important;
+    }
+
+    .header {
+      word-wrap: break-word;
+    }
+
+    &:not(.with-img) {
+      // Boxes without img: hide box2, make .box1 100% height
+      .box1 {
+        flex: 0 1 100%;
+      }
+
+      .box2 {
+        display: none;
+      }
+    }
+  }
+
+  .text {
+    padding: 0 25px 5px @padding10;
+    color: inherit;
+  }
+  // Height 298px
+  &.size1 {
+    background: @ku-gray;
+
+    &.with-img {
+      .box1 {
+        order: 2;
+        padding: 5px 10px 10px;
+        flex: 1 1 auto;
+
+        .header-small {
+          font-weight: bold;
+          color: @gray-light;
+          text-transform: uppercase;
+          letter-spacing: 0.4px;
+          margin: 5px 0;
+
+          .date {
+            float: right;
+            padding-left: 5px;
+          }
+        }
+
+        .header {
+          color: @ku-news-gray;
+          font-size: 1.3em;
+          line-height: 1.3em;
+          text-transform: none;
+          padding: 0;
+          margin: 10px 0 5px;
+        }
+
+        .text {
+          font-size: 1.1em;
+          font-weight: 400;
+          line-height: 1.45em;
+          padding: 0 15px 5px 0;
+          color: @gray-dark;
+        }
+      }
+    }
+
+    .box2 {
+      order: 1;
+      // image height
+      flex: 0 0 @gridbox3;
+    }
+
+    &:before {
+      display: none;
+    }
+
+    &:hover {
+      background: @ku-gray-hover;
+    }
+  }
+  // Height 185px
+  &.size2 {
+    //height: @gridbox2;
+    &:not(.with-img) {
+      .box1 {
+        flex: 0 1 100%;
+
+        .text {
+          display: block;
+        }
+      }
+    }
+  }
+  // Height 133px
+  &.size3 {
+    //height: @gridbox3;
+    &:not(.with-img) {
+      .box1 {
+        flex: 0 1 100%;
+
+        .text {
+          display: block;
+        }
+      }
+    }
+  }
+  // Height 81px
+  &.size4 {
+    height: @gridbox4;
+
+    .box1 {
+      .text {
+        display: none;
+      }
+    }
+
+    .box2 {
+      display: none;
+    }
+  }
+  // Height 55px
+  &.size5 {
+    height: @gridbox5;
+
+    .box1 {
+      .header {
+        padding-top: 6px;
+      }
+
+      .text {
+        display: none;
+      }
+    }
+
+    .box2 {
+      display: none;
+    }
+  }
+}
+/*
+* Mobile: All column types must behave like single column boxes
+*/
+
+.gridbox {
+  .all-single-column();
+
+  &.full {
+    .header {
+      background: transparent;
+      padding-right: 10px;
+    }
+  }
+}
+@media all and (max-width: @screen-xs) {
+  .gridbox {
+    &.size1 {
+      .text {
+        display: block;
+      }
+
+      .box2 {
+        flex: 1 0 @gridbox2;
+      }
+    }
+
+    &.size2 {
+      &.with-img {
+        height: 220px;
+        // Video has natural height
+        &.with-iframe {
+          height: inherit;
+        }
+      }
+    }
+
+    &.size3 {
+      &.with-img {
+        height: 170px;
+        // Video has natural height
+        &.with-iframe {
+          height: inherit;
+        }
+      }
+    }
+
+    &.outlined {
+      &.with-img {
+        border: 0!important;
+
+        &::before {
+          color: @white-color;
+        }
+
+        &.subcolor_5 {
+          &::before {
+            color: @gray-dark;
+          }
+        }
+
+        &.subcolor_6 {
+          &::before {
+            color: @gray-dark;
+          }
+        }
+      }
+    }
+  }
+}
+@media all and (max-width: @screen-xs-max) {
+  // All flexboxes now require dynamic height as they are stacked in mobile
+  .gridbox {
+
+    .text {
+      display: none;
+    }
+
+    .box1 {
+      flex: 0 1 auto;
+    }
+    &:not(.with-img) {
+      height: auto!important;
+    }
+  }
+
+  .gridbox {
+    &.size1 {
+      &.with-img {
+        .text {
+          display: block;
+        }
+
+        .box2 {
+          flex: 1 0 @gridbox2;
+
+          img {
+            max-width: 100%;
+            width: 100%;
+            max-height: none;
+          }
+        }
+      }
+    }
+  }
+}
+@media all and (min-width: @screen-sm) {
+  // Set gridbox height for tablet upwards
+  .gridbox {
+    &.size1 {
+      height: @gridbox1;
+    }
+
+    &.size2 {
+      height: @gridbox2;
+    }
+
+    &.size3 {
+      height: @gridbox3;
+    }
+  }
+}
+@media all and (min-width: @screen-xs) and (max-width: @screen-sm-max) {
+  // Tablet
+  .gridbox {
+    .img-text-aligned();
+
+    &.outlined {
+      &::before {
+        color: inherit;
+      }
+
+      .box1 {
+        position: relative!important;
+      }
+    }
+
+    &.text-down {
+      &.subcolor_6 {
+        border: 1px solid @gray-dark;
+      }
+    }
+
+    &.size1 {
+      .box2 {
+        img {
+          max-height: none;
+          max-width: 100%;
+        }
+      }
+    }
+
+    &.with-img {
+      &.size2,
+      &.size3 {
+        .box1 {
+          position: relative!important;
+
+          .header {
+            border-right: 0;
+            white-space: normal;
+          }
+        }
+      }
+
+      &:hover {
+        .header {
+          background: transparent;
+        }
+      }
+    }
+    // Frontpage only
+    .FullWidthFrontpage & {
+      &.outlined {
+        .header {
+          background: 0;
+          color: inherit;
+        }
+      }
+    }
+  }
+
+  body:not(.FullWidthFrontpage) {
+    .gridbox {
+      &.text-down {
+        &:hover {
+          .header {
+            background: 0;
+          }
+        }
+      }
+
+      &.outlined {
+        .header {
+          background: 0;
+          color: inherit!important;
+        }
+      }
+    }
+  }
+  // Tablet: For full-width front page only
+  .FullWidthFrontpage {
+    // Multiple columns span
+    .one-one-two-column .column3,
+    .one-two-column .column2,
+    .single-column .column1,
+    .two-one-column .column1,
+    .two-one-one-column .column1 {
+      .gridbox {
+        &.with-img {
+          .header {
+            background: transparent;
+          }
+
+          &.outlined {
+            .header {
+              color: inherit;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media all and (min-width: @screen-sm) and (max-width: @screen-sm-max) {
+  // Tablet
+  .gridbox {
+    &.size1 {
+      &.with-img {
+        .text {
+          display: none;
+        }
+      }
+    }
+  }
+  //For full-width frontpage only
+  .FullWidthFrontpage {
+    .col-sm-6,
+    .double-column .col-sm-6 {
+      .gridbox {
+        &.size2,
+        &.size3 {
+          &.with-img {
+            flex-direction: column!important;
+            border: 0;
+
+            .box1 {
+              position: absolute!important;
+            }
+
+            .text {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media all and (min-width: @screen-md) {
+  //Frontpage only
+  .one-one-two-column .column1,
+  .one-one-two-column .column2,
+  .two-one-one-column .column2,
+  .two-one-one-column .column3 {
+    .gridbox {
+      &.with-img {
+        &.outlined {
+          border: 0;
+
+          &::before {
+            color: @white-color;
+          }
+
+          &.subcolor_6 {
+            &::before {
+              color: @ku-gridbox-text;
+            }
+          }
+        }
+      }
+    }
+  }
+  // Desktop text-down with img style for multiple column spans
+  .one-one-two-column .column3,
+  .one-three-column .column2,
+  .one-two-column .column2,
+  .single-column .column1,
+  .three-one-column .column1,
+  .two-one-column .column1,
+  .two-one-one-column .column1 {
+    .gridbox {
+      .img-text-aligned();
+
+      .text {
+        display: block;
+      }
+
+      &.outlined {
+        .header {
+          background: transparent;
+          color: inherit;
+        }
+      }
+    }
+  }
+  // Desktop text-down with img style for multiple column spans
+  .gridcontent:not(#gridsidebar) .single-column .column1,
+  .one-one-two-column .column3,
+  .one-three-column .column2,
+  .one-two-column .column2,
+  .three-one-column .column1,
+  .two-one-column .column1,
+  .two-one-one-column .column1 {
+    .gridbox {
+      &.with-img {
+        &:hover {
+          .header {
+            background: 0;
+          }
+        }
+      }
+    }
+  }
+
+  .gridbox {
+    &.with-img {
+      .text {
+        display: none;
+      }
+    }
+
+    &:not(.with-img) {
+      &.subcolor_6 {
+        color: @gray-dark;
+      }
+    }
+  }
+  // Outline arrow style for single column spans
+  .double-column [class*=column],
+  .one-two-column .column1,
+  .quad-column [class*=column],
+  .triple-column [class*=column],
+  .two-one-column .column2 {
+    .gridbox {
+      &.size2,
+      &.size3 {
+        &.outlined.with-img {
+          &.subcolor_6 {
+            &::before {
+              color: @gray-dark;
+            }
+          }
+        }
+
+        &.text-over.with-img {
+          // Trying to fix visible background behind image
+          background: none;
+        }
+      }
+    }
+  }
+  // Styling for full width boxes
+  .single-column .column1 {
+    .size1 {
+      flex-direction: row;
+      background: @white-color;
+
+      &.with-img {
+        .header {
+          margin-top: 5px;
+        }
+
+        .box1 {
+          padding: 0 0 5px @grid-gutter-height;
+          flex: 0 1 51.6%;
+          max-width: 390px; // preventing that too much text will expand this box
+          order: 2;
+
+          .header-small {
+            margin: 0;
+          }
+
+          .header {
+            font-size: 36px;
+            font-weight: normal;
+            line-height: 1.11111em;
+          }
+
+          .text {
+            // Display text in desktop
+            display: block;
+            font-size: 14.1px;
+            padding: 5px 0;
+          }
+        }
+
+        .box2 {
+          // Flip image to the left
+          flex: 1!important;
+          order: 1;
+
+          img {
+            object-fit: cover;
+          }
+        }
+
+        &:hover {
+          // New sort of underlining :-)
+          .header {
+            > span {
+              background-image: linear-gradient(rgba(74, 73, 73, 0.25) 0%, @gray-dark 100%);
+              background-repeat: repeat-x;
+              background-size: 1px 1px;
+              background-position: 0 93%;
+              text-shadow: 3px 0 @white-color, 2px 0 @white-color, 1px 0 @white-color, -1px 0 @white-color, -2px 0 @white-color, -3px 0 @white-color;
+            }
+          }
+        }
+      }
+      // Flip image to the right
+      &.img-flip-right {
+        .box1 {
+          padding-left: 0;
+          padding-right: @grid-gutter-height;
+        }
+
+        .box2 {
+          flex: 1;
+          order: 2;
+        }
+      }
+    }
+
+    .size2,
+    .size3 {
+      &.with-img {
+        .box1 {
+          .header {
+            border-right: 0;
+            white-space: normal;
+          }
+        }
+      }
+    }
+  }
+  // Styling for 3/1 columns with .size1 boxes on full width page (front page)
+  .FullWidthFrontpage {
+    .one-three-column .column2,
+    .three-one-column .column1 {
+      .gridbox {
+        &.size1 {
+          flex-direction: row;
+
+          .box1 {
+            order: 1;
+          }
+
+          .text {
+            display: block;
+          }
+
+          .box2 {
+            order: 2;
+            flex: 0 0 50%;
+
+            img {
+              max-width: none;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  #gridsidebar {
+    .single-column .column1 {
+      .gridbox {
+        &.size2,
+        &.size3 {
+          &.with-img {
+            flex-direction: column;
+
+            .header {
+              padding: 8px 0 8px 10px;
+              font-size: 1.1em;
+              border-right: 25px solid transparent;
+              white-space: nowrap;
+              overflow: hidden;
+              @media (min-width: @screen-xs) and (max-width: @screen-xs-max) {
+                border-right: 0;
+                white-space: normal;
+                overflow: auto;
+              }
+            }
+
+            .box1 {
+              position: absolute;
+              bottom: 0;
+              left: 0;
+
+              .text {
+                display: none;
+              }
+            }
+
+            .box2 {
+              flex: 0 1 235px;
+            }
+
+            &::before {
+              bottom: 9px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+// Special styles for Internet Explorer
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  /* IE 11 */
+  .gridbox.with-img {
+    .box2 img {
+      .img-fix-for-ie();
+    }
+
+    &.size2 {
+      .box2 img {
+        .img-fix-for-ie-size2();
+      }
+    }
+  }
+
+  .double-column {
+    .gridbox.with-img {
+      &.size2 {
+        .box2 img {
+          height: 110%;
+        }
+      }
+    }
+  }
+  // Single columns
+  .one-two-column .column1,
+  .triple-column [class*=column],
+  .two-one-column .column2 {
+    .gridbox.with-img {
+      &.size1 {
+        .box2 img {
+          height: 100%;
+          max-width: none;
+        }
+      }
+    }
+  }
+}
+@supports (-ms-ime-align: auto) {
+  /* IE Edge */
+  .gridbox.with-img {
+    .box2 img {
+      .img-fix-for-ie();
+    }
+
+    &.size2 {
+      .box2 img {
+        .img-fix-for-ie-size2();
+      }
+    }
+  }
+
+  .double-column {
+    .gridbox.with-img {
+      &.size2 {
+        .box2 img {
+          height: 110%;
+        }
+      }
+    }
+  }
+}
+
+.boxlink {
+  color: inherit!important;
+  display: block;
+
+  &:hover {
+    text-decoration: none;
+
+    .gridbox {
+      img {
+        .image-fadeOut();
+      }
+    }
+  }
+}

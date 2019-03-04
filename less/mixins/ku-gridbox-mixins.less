@@ -1,0 +1,135 @@
+/*
+* KU gridboxes mixin - for Bootstrap templates only
+*/
+/*
+* Mobile style: All column types must behave like single column boxes regardless of template:
+*   .gcrow .gccolumn .gridbox {
+*    .all-single-column();
+*  }
+*/
+
+.all-single-column() {
+  &.size1 {
+    &.with-img {
+      .box2 {
+        flex: 0 0 55%;
+      }
+    }
+  }
+
+  &.size2,
+  &.size3 {
+    &.with-img {
+      &.text-over {
+        &.text-down {
+          .box1 {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+          }
+        }
+
+        &.text-top {
+          .box1 {
+            position: absolute;
+            left: 0;
+            top: 0;
+          }
+        }
+      }
+
+      .box1 {
+        flex: 1;
+        width: 100%;
+
+        .header {
+          width: 100%;
+          border-right: 25px solid transparent;
+          white-space: nowrap;
+          overflow: hidden;
+        }
+      }
+
+      &.outlined {
+        .box1 {
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          width: 100%;
+        }
+
+        &.subcolor_5 {
+          .header {
+            color: @ku-gridbox-text;
+          }
+        }
+
+        &.subcolor_6 {
+          .header {
+            color: @ku-gridbox-text;
+          }
+        }
+
+        &.subcolor_7 {
+          .header {
+            color: @white-color;
+          }
+        }
+      }
+
+      &.text-top {
+        .box1 {
+          order: 1;
+          position: relative;
+        }
+
+        .box2 {
+          order: 2;
+          flex: 1;
+        }
+      }
+    }
+  }
+}
+/*
+* Tablet style: Grid front page with left menu - all boxes img left text right:
+*    .img-text-aligned();
+*/
+
+.img-text-aligned() {
+  &.size1 {
+    .box2 {
+      flex: 0 1 @gridbox2;
+      //Fix for iframe centering in .size1 boxes
+      iframe {
+        position: absolute;
+        top: -20%!important;
+      }
+    }
+  }
+
+  &.size2,
+  &.size3 {
+    &.with-img {
+      flex-direction: row;
+
+      .box1 {
+        flex: 1;
+        order: 2;
+        position: relative;
+
+        .header {
+          position: relative;
+          bottom: auto;
+          left: auto;
+          padding: 8px 5px 6px 10px;
+        }
+      }
+
+      .box2 {
+        flex: 0 0 235px;
+        order: 1;
+      }
+    }
+  }
+}

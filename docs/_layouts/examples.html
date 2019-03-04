@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html class="ku-bs theme-faelles {% if page.category == 'non-responsive' %}non-responsive{% endif %}" lang="{% if page.category == 'kurser' %}da{% else %}en{% endif %}">
+  <head>
+    {% include header.html %}
+    <style>
+    .breadcrumb {
+      margin-top: 23px;
+    }
+    </style>
+  </head>
+  <body class="{% if site.github %}{% else %}ku-docs{% endif %}{% if page.category == 'forms' %} Form{% endif %}">
+    <nav class="jumpbox" aria-label="Spring til indhold på Siden" title="Spring til Indhold på Siden">
+      <ul class="jump">
+        <li>
+          <a href="#kunav" title="Spring til sidens menu" accesskey="1" class="btn btn-small btn-gray"><span class="glyphicon glyphicon-menu-hamburger"></span><span> Emnenavigation</span></a>
+        </li>
+        <li>
+          <a href="#main-area" title="Spring til Indhold på Siden" accesskey="2" class="btn btn-small btn-gray"><span class="glyphicon glyphicon-list"></span><span> Indhold</span></a>
+        </li>
+        <li>
+          <a href="#globalfooter" title="Spring til footerlinks" accesskey="3" class="btn btn-small btn-gray"><span class="glyphicon glyphicon-list"></span><span> Footerlinks</span></a>
+        </li>
+      </ul>
+    </nav>
+    {% include nav/ku-nav.html %}
+    {{ content }}
+    {% include ku-privacypolicy.html %}
+    {% include global-footer.html %}
+  </body>
+</html>

@@ -1,0 +1,309 @@
+/* KU custom elements */
+// Gamle nyhedsbokse:
+
+.gridnyhed {
+  height: 389px;
+  @media (min-width: @screen-md) {
+    height: @gridbox1;
+  }
+  background-color: @grey-newsbox;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  .nyhed-illustration {
+    flex: 0 0 200px;
+    overflow: hidden;
+
+    a {
+      display: flex;
+      justify-content: center;
+      flex: inherit;
+      height: 100%;
+
+      img {
+        flex: none;
+        object-fit: cover;
+        .image-fadeIn();
+      }
+    }
+  }
+  @media (min-width: @screen-md) {
+    .nyhed-illustration {
+      flex: 0 1 160px;
+    }
+  }
+
+  h2 {
+    font-size: 17px;
+    line-height: 120%;
+    letter-spacing: 0.85px;
+    font-weight: 700;
+
+    a {
+      color: @ku-news-gray;
+      display: inline;
+    }
+  }
+
+  .nyhedswrap {
+    padding: 10px;
+  }
+
+  .nyhed-teaser {
+    display: block;
+  }
+
+  .nyhed-tema {
+    margin: 4px 0 2px;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.36px;
+
+    span {
+      // Hide date
+      display: none;
+    }
+  }
+  @media (min-width: @screen-md) {
+    .nyhed-teaser {
+      display: none;
+    }
+  }
+
+  &:hover {
+    img {
+      .image-fadeOut();
+    }
+  }
+}
+// "Find something" boxes:
+
+.find-box {
+  height: 130px;
+  position: relative;
+  overflow: hidden;
+
+  [class$="-bg"] {
+    width: 100%;
+    height: 130px;
+    margin-bottom: 0 !important;
+    background: url("https://bootstrap.secure.ku.dk/img/find_en_forsker.png") no-repeat 80% 25px;
+    background-size: 140px;
+
+    .search-text {
+      margin: 20px 5px 20px 15px;
+      font-weight: 600;
+      font-size: 18px;
+
+      .text-normal {
+        font-weight: 300;
+      }
+    }
+  }
+
+  form {
+    width: 94%;
+    margin: 0 auto;
+
+    .input-group {
+      border: 1px solid @gray-666;
+      border-radius: @border-radius-base;
+
+      input[type="text"] {
+        opacity: 0.85;
+        border: 0;
+      }
+
+      .input-group-btn {
+        .btn {
+          color: @ku-red;
+          font-weight: 700;
+          border-left: 1px solid @gray-666;
+        }
+      }
+    }
+  }
+}
+// Find en forsker search box
+
+.find-researcher {
+  #gradient >.horizontal(#bebec0, #b0b2b6);
+
+  .search-text {
+    color: #565656;
+  }
+}
+// Find på KUnet
+
+.find-kunet {
+  #gradient >.horizontal(#a80505, #7e0202);
+
+  .search-text {
+    color: #efefef;
+  }
+}
+// Custom dropdown lists
+
+.linkslist {
+  margin: 10px 0;
+  position: relative;
+  background-color: @white-color;
+
+  .menu-trigger {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    padding: 10px 15px;
+    border: 1px solid @gray-ddd;
+  }
+
+  input[type="checkbox"] {
+    display: none;
+
+    &+label::after {
+      font-size: 10px;
+      font-weight: normal;
+      margin-right: 5px;
+      right: 7px;
+      top: 50%;
+      position: absolute;
+      transform: translateY(-50%) rotate(90deg) translate3d(0, 0, 0);
+      text-decoration: none;
+      display: inline-block;
+      font-family: @custom-icon-font-family-name;
+      text-transform: none;
+      content: @icon-arrow;
+    }
+
+    &:checked+label::after {
+      transform: translateY(-50%) rotate(0deg) translate3d(0, 0, 0);
+    }
+
+    &~ul.menu-list {
+      position: absolute;
+      width: 100%;
+      list-style: none;
+      padding-left: 0;
+      margin-top: 0;
+      height: 0;
+      transform: scaleY(0);
+    }
+
+    &:checked~ul.menu-list {
+      margin-top: -1px;
+      top: 100%;
+      left: 0;
+      z-index: 180;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+      height: auto;
+      transform-origin: top;
+      transition: transform 0.2s ease-out;
+      transform: scaleY(1);
+
+      li {
+        a {
+          display: block;
+          color: inherit;
+        }
+      }
+    }
+  }
+}
+// Beredskabsbanner
+
+#warning-banner {
+  background-color: @beredsskabs-banner-bg;
+  padding: 0;
+  position: relative;
+  width: 100%;
+}
+
+#warning-banner-inner {
+  margin: 0 auto;
+  padding: 15px 15px 15px 115px;
+  max-width: 874px;
+  background: transparent url("https://cms.ku.dk/grafik/beredskab.png") no-repeat center left;
+  background-size: 100px;
+
+  p {
+    font-size: 16px;
+  }
+}
+
+#warning-banner-header {
+  font-size: 40px;
+  margin: 0;
+  padding: 0;
+}
+// Textboxes
+
+.textbox-grey {
+  // To-do: delete this class as it's been replaced by .well
+  .well;
+}
+// Faktaboks
+
+.factbox {
+  // Default right aligned
+  background-color: @factbox-bg;
+  font-size: 12px;
+  line-height: 1.4;
+  padding: 15px;
+  width: 45%;
+  border-radius: @border-radius-base;
+  float: right;
+  margin: 4px 0 10px 20px;
+
+  h3 {
+    margin: 0 0 10px;
+  }
+
+  &-left {
+    float: left;
+    margin-right: 20px;
+    margin-left: 0;
+  }
+  @media (max-width: @screen-sm) {
+    margin: 10px 0;
+    width: 100%;
+    font-size: 13px;
+    line-height: unset;
+    float: none;
+  }
+}
+
+.column1,
+.rightbox-normal {
+  .factbox {
+    width: 100%!important;
+    margin: 0;
+    float: none;
+  }
+}
+// Newsletter and GDPR
+
+form.gdpr-accept {
+  margin-top: 10px;
+
+  label[for="email"] {
+    margin-bottom: 5px;
+  }
+
+  .gdpr-label {
+    font-weight: 400;
+    line-height: 1.3;
+    font-size: 12px;
+    margin: 10px 0 15px;
+
+    input[type=checkbox] {
+      margin-right: 6px;
+    }
+  }
+
+  .btn {
+    + .btn {
+      margin-left: 10px;
+    }
+  }
+}

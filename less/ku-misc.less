@@ -1,0 +1,197 @@
+//
+// KU misc.
+// Various extra classes that don't belong in other .less files
+// ---------------------------------------------------------------
+
+
+.divider {
+  margin: @margin10 0;
+  &:extend(.clearfix all);
+}
+
+.spacer {
+  height: @margin20;
+  clear: both;
+  &:extend(.clearfix all);
+}
+// Accessibility
+
+[tabindex] {
+  outline: 0;
+  user-focus: none;
+}
+
+.page-icons {
+  display: none;
+}
+
+@media (min-width: @screen-sm) {
+  // Utility icon
+  .page-icons {
+    display: block;
+    .pull-right();
+  }
+
+  .ical {
+    a {
+      color: @gray-light;
+      font-size: 1.2em;
+    }
+  }
+  // Make columns equal height
+  .row-equal-height {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .jump,
+  .jumpbox {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 0;
+    width: 0;
+    margin: 0;
+
+    li {
+      list-style: none;
+      display: block;
+
+      a {
+        display: block;
+        position: absolute;
+        top: -1000px;
+        left: 0;
+        width: 0;
+        height: 0;
+
+        &:active,
+        &:focus {
+          color: #51a7e8;
+          top: 0;
+          left: 0;
+          z-index: 10;
+          height: auto;
+          width: auto;
+        }
+
+        &.btn-gray {
+          background-color: @gray-dark;
+          color: @white-color;
+
+          &:focus {
+            color: @white-color!important;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: @screen-sm) {
+  .jumpbox {
+    display: none;
+  }
+}
+
+
+.relative {
+  position: relative;
+}
+// Let's target IE to respect aspect ratios and sizes for img tags containing SVG files - Thanks IE! :-/
+
+.ie9 img[src$=".svg"] {
+  width: 100%;
+}
+//Fix viewport width on Windows phone: http://getbootstrap.com/getting-started/#support-ie10-width
+@-ms-viewport {
+  width: device-width;
+}
+// Global scroll to top
+
+.scrolltop {
+  position: fixed;
+  bottom: 3%;
+  right: 2%;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #a1a1a1;
+  color: @white-color;
+  z-index: 1030;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+
+  .glyphicon-menu-up {
+    .glyphicon;
+    width: 100%;
+    text-align: center;
+
+    &:before {
+      display: block;
+      margin: 0 auto;
+      font-size: 18px;
+    }
+  }
+}
+// KU loading symbol
+@keyframes ku-loading {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(359deg);
+  }
+}
+
+.ku-loading {
+  border-bottom: 3px solid @gray;
+  border-left: 3px solid @gray;
+  border-right: 3px solid @gray;
+  border-top: 3px solid @ku-red;
+  border-radius: 100%;
+  height: 25px;
+  width: 25px;
+  animation: ku-loading 0.6s infinite linear;
+  overflow: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+// Jump to ID
+
+.jump-to {
+  float: right;
+  font-size: 0;
+  display: block;
+  position: relative;
+  color: @gray-666;
+  .glyphicon-transfer;
+
+  &::before {
+    .glyphicon;
+    transform: rotate(90deg);
+    font-size: 12px;
+    color: inherit;
+    padding: 6px;
+    border: 1px solid @gray-666;
+    border-radius: 50%;
+  }
+
+  &:active,
+  &:focus,
+  &:hover {
+    color: inherit;
+  }
+}
+.embed-responsive {
+  &+ .embed-responsive {
+    margin-top: @grid-gutter-height;
+  }
+}

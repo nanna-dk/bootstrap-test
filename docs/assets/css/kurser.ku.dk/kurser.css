@@ -1,0 +1,283 @@
+/* CSS for kurser.ku.dk */
+
+body {
+  line-height: 1.4;
+}
+
+select[multiple] {
+  visibility: hidden;
+}
+
+.form-group .control-label {
+  text-overflow: initial;
+  white-space: normal;
+  padding-top: 0;
+}
+
+h1 {
+  font-size: 1.67em;
+  line-height: 1.4;
+  margin: 0 0 16px;
+}
+
+.courseVolume {
+  float: right;
+  display: inline-block;
+}
+
+table>thead>tr>th, .control-label {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.course-item p {
+  margin: 0;
+}
+
+@media print {
+  [data-toggle="collapse"]>a::after {
+    display: none!important;
+  }
+}
+
+.resultsheader {
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+@-webkit-keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+#searchall, #showall {
+  font-size: 14px;
+  font-weight: 600;
+  color: #901a1e;
+  -webkit-animation: fadein 2s;
+  animation: fadein 2s;
+}
+
+#searchall.btn-default:hover, #searchall.btn-default:active, #searchall.btn-default:focus, #showall.btn-default:hover, #showall.btn-default:active, #showall.btn-default:focus {
+  color: #901a1e;
+}
+
+.dl-horizontal dt {
+  margin-top: 5px;
+}
+
+dt:first-of-type, dd:first-of-type {
+  margin-top: 0;
+}
+
+.panel-title {
+  font-weight: 600;
+}
+
+.right-side li .glyphicon {
+  color: #999;
+  font-size: .83em;
+}
+
+.right-side .panel-default>.panel-heading {
+  background-image: none;
+  background-color: #fff;
+  padding: 8px 0;
+  font-weight: 600;
+  line-height: 1.25;
+  color: #252525;
+  letter-spacing: .6px;
+  border-top: 0;
+  border-bottom: 0;
+  height: auto;
+  overflow: unset;
+
+}
+
+.right-side .panel-default>.panel-heading .panel-title {
+  font-size: 16px;
+  color: #252525;
+  padding: 0;
+  font-weight: 600;
+  line-height: 1.25;
+  margin: 0;
+}
+
+.right-side .panel-default>.panel-body {
+    padding: 1px 0 0;
+    border-top: 1px solid #901a1e;
+}
+
+ul.workload li {
+  width: 50%;
+  float: left;
+  padding: 3px 0;
+  list-style-type: none;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+ul.workload li:nth-child(3), ul.workload li:nth-child(4), ul.workload li:nth-child(7), ul.workload li:nth-child(8), ul.workload li:nth-child(11), ul.workload li:nth-child(12), ul.workload li:nth-child(15), ul.workload li:nth-child(16) {
+  background-color: #f9f9f9;
+}
+
+ul.workload li:nth-child(odd) {
+  clear: left;
+}
+
+ul.workload li:nth-child(even) {
+  text-align: center;
+}
+
+ul.workload .total {
+  border-top: 1px solid #999;
+}
+
+.last-modified, .permalink {
+  margin-top: 10px;
+}
+
+.course-item>a {
+  color: #666;
+  font-size: 15px;
+  font-weight: 600;
+  position: relative;
+  display: block;
+  background-color: #f6f6f6;
+  border: 1px solid #dedede;
+  border-radius: 2px;
+  padding: 7px 25px 7px 5px;
+  line-height: 1.3em;
+  margin: 10px 0;
+}
+
+.course-item>a:hover {
+  text-decoration: none;
+}
+
+.course-item>a::after, .toggle-btns .btn:after {
+  content: "\e259";
+  display: inline-block;
+  font-family: 'Glyphicons Halflings';
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin-left: 4px;
+  font-size: .85em;
+  position: absolute;
+  top: 11px;
+  right: 6px;
+}
+
+.course-item>a:not(.collapsed)::after {
+  content: "\e260";
+}
+
+.show-filter {
+  display: block;
+}
+
+.toggle-btns {
+  float: right;
+}
+
+.toggle-btns .btn {
+  position: relative;
+  padding-right: 30px;
+}
+
+.toggle-btns .btn:after {
+  top: 6px;
+  right: 7px;
+  font-size: 13.5px;
+  color: #666;
+}
+
+.toggle-btns .btn.closed:after {
+  content: "\e260";
+}
+
+@media (min-width: 480px) and (max-width: 768px) {
+  ul.workload {
+    width: 70%;
+  }
+  .form-group .control-label {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding-top: 0;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+@media (min-width: 769px) {
+  .courseTitle {
+    width: 82%;
+    display: inline-block;
+  }
+  .course-archive {
+    margin-top: 3px;
+    display: block;
+  }
+  .right-side .dl-horizontal dd {
+    margin-left: 43%;
+    margin-top: 5px;
+  }
+  .right-side .dl-horizontal dt {
+    width: 40%;
+    text-align: left;
+    margin-top: 5px;
+  }
+  .right-side .dl-horizontal dt:hover+.right-side .dl-horizontal dd {
+    background-color: #f9f9f9;
+  }
+  ul.workload {
+    width: 50%;
+  }
+  .show-filter {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .toggle-btns {
+    float: left;
+  }
+  .course-item>a::after {
+    font-size: 1em;
+  }
+  .dataTables_wrapper .row .col-sm-6:nth-of-type(2) {
+    margin-bottom: 0;
+  }
+  .mobile-hidden {
+    display: none;
+  }
+  .show-filter {
+    float: right;
+    margin-left: 10px;
+  }
+  .show-filter::after {
+    font-family: 'Glyphicons Halflings';
+    content: "\e259";
+    color: #252525;
+    margin-left: 7px;
+  }
+  .show-filter.open::after {
+    content: "\e260";
+  }
+}

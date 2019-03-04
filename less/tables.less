@@ -1,0 +1,316 @@
+//
+// Tables
+// --------------------------------------------------
+
+table {
+  background-color: @table-bg;
+  border-collapse: collapse;
+  // KU:
+  font-size: @font-size-base;
+  // KU specific:
+  &.list {
+    tr {
+      th {
+        border-top: 1px solid @gray-d7;
+        border-bottom: 2px solid @gray-d7;
+        padding-top: @table-cell-padding;
+        padding-bottom: @table-cell-padding;
+        color: #4a4949;
+      }
+
+      td {
+        padding: @table-cell-padding 4px @table-cell-padding 0;
+        border-bottom: 1px solid @gray-lighter;
+      }
+    }
+  }
+}
+
+caption {
+  padding-top: @table-cell-padding;
+  padding-bottom: @table-cell-padding;
+  color: @text-muted;
+  text-align: left;
+}
+
+th {
+  text-align: left;
+}
+// Baseline styles
+
+.table {
+  width: 100%;
+  max-width: 100%;
+  table-layout: fixed;
+  margin-bottom: @line-height-computed;
+  // Cells
+  > tfoot,
+   > thead,
+  > tbody {
+    > tr {
+      > th,
+      > td {
+        padding: @table-cell-padding;
+        line-height: @line-height-base;
+        vertical-align: top;
+        border-top: 1px solid @table-border-color;
+      }
+    }
+  }
+  // Bottom align for column headings
+  > thead > tr > th {
+    vertical-align: bottom;
+    border-bottom: 1px solid @table-border-color;
+  }
+  // Remove top border from thead by default
+  > caption + thead,
+   > thead:first-child,
+  > colgroup + thead {
+    > tr:first-child {
+      > th,
+      > td {
+        border-top: 0;
+      }
+    }
+  }
+  // Account for multiple tbody instances
+  > tbody + tbody {
+    border-top: 2px solid @table-border-color;
+  }
+  // Nesting
+  .table {
+    background-color: @body-bg;
+  }
+  @media (min-width: @screen-sm) {
+    // KU
+    > tbody > tr {
+      &.highlight {
+        background-color: @tr-highlight-bg!important;
+      }
+    }
+  }
+}
+// KU table columns widths
+
+.pct_10 {
+  width: 10%;
+}
+
+.pct_15 {
+  width: 15%;
+}
+
+.pct_20 {
+  width: 20%;
+}
+
+.pct_25 {
+  width: 25%;
+}
+
+.pct_30 {
+  width: 30%;
+}
+
+.pct_35 {
+  width: 35%;
+}
+
+.pct_40 {
+  width: 40%;
+}
+
+.pct_45 {
+  width: 45%;
+}
+// Condensed table w/ half padding
+
+.table-condensed {
+  > tfoot,
+   > thead,
+  > tbody {
+    > tr {
+      > th,
+      > td {
+        padding: @table-condensed-cell-padding;
+      }
+    }
+  }
+}
+// Bordered version
+//
+// Add borders all around the table and between all the columns.
+
+.table-bordered {
+  border: 1px solid @table-border-color;
+
+  > tfoot,
+   > thead,
+  > tbody {
+    > tr {
+      > th,
+      > td {
+        border: 1px solid @table-border-color;
+      }
+    }
+  }
+
+  > thead > tr {
+    > th,
+    > td {
+      border-bottom-width: 2px;
+    }
+  }
+}
+// Zebra-striping
+//
+// Default zebra-stripe styles (alternating gray and transparent backgrounds)
+
+.table-striped {
+  > tbody > tr:nth-of-type(odd) {
+    background-color: @gray-lighter;
+  }
+}
+// Hover effect
+//
+// Placed here since it has to come after the potential zebra striping
+
+.table-hover {
+  > tbody > tr:hover {
+    background-color: @table-bg-hover;
+  }
+}
+// KU specific
+
+.table-noborder {
+  > tfoot,
+   > thead,
+  > tbody {
+    > tr {
+      > th,
+      > td {
+        border: 0;
+      }
+    }
+  }
+}
+// KU specific - replaces >table cellspacing="5">:
+
+.table-cellspacing {
+  border-spacing: 5px;
+  border-collapse: separate;
+
+  > tr {
+    > th,
+    > td {
+      border: 0;
+    }
+  }
+}
+
+// table with images in first td of each tr - remove left padding
+.table-with-img-col {
+  > tbody {
+    > tr {
+      > td {
+        &:first-child {
+          padding-left: 0;
+        }
+      }
+    }
+  }
+}
+
+// Table cell sizing
+//
+// Reset default table behavior
+
+table col[class*="col-"] {
+  position: static; // Prevent border hiding in Firefox and IE9-11 (see https://github.com/twbs/bootstrap/issues/11623)
+  float: none;
+  display: table-column;
+}
+
+table {
+  td,
+  th {
+    &[class*="col-"] {
+      position: static; // Prevent border hiding in Firefox and IE9-11 (see https://github.com/twbs/bootstrap/issues/11623)
+      float: none;
+      display: table-cell;
+    }
+  }
+}
+// Table backgrounds
+//
+// Exact selectors below required to override `.table-striped` and prevent
+// inheritance to nested tables.
+// Generate the contextual variants
+.table-row-variant(active; @table-bg-active);
+.table-row-variant(success; @state-success-bg);
+.table-row-variant(info; @state-info-bg);
+.table-row-variant(warning; @state-warning-bg);
+.table-row-variant(danger; @state-danger-bg); // Responsive tables
+//
+// Wrap your tables in `.table-responsive` and we'll make them mobile friendly
+// by enabling horizontal scrolling. Only applies <768px. Everything above that
+// will display normally.
+
+.table-responsive {
+  overflow-x: auto;
+  min-height: 0.01%; // Workaround for IE9 bug (see https://github.com/twbs/bootstrap/issues/14837)
+  @media screen and (max-width: @screen-xs-max) {
+    width: 100%;
+    margin-bottom: (@line-height-computed * 0.75);
+    overflow-y: hidden;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+    border: 1px solid @table-border-color;
+    // Tighten up spacing
+    > .table {
+      margin-bottom: 0;
+      // Ensure the content doesn't wrap
+      > tfoot,
+       > thead,
+      > tbody {
+        > tr {
+          > th,
+          > td {
+            white-space: nowrap;
+          }
+        }
+      }
+    }
+    // Special overrides for the bordered tables
+    > .table-bordered {
+      border: 0;
+      // Nuke the appropriate borders so that the parent can handle them
+      > tfoot,
+       > thead,
+      > tbody {
+        > tr {
+          > th:first-child,
+          > td:first-child {
+            border-left: 0;
+          }
+
+          > th:last-child,
+          > td:last-child {
+            border-right: 0;
+          }
+        }
+      }
+      // Only nuke the last row's bottom-border in `tbody` and `tfoot` since
+      // chances are there will be only one `tr` in a `thead` and that would
+      // remove the border altogether.
+      > tbody,
+      > tfoot {
+        > tr:last-child {
+          > th,
+          > td {
+            border-bottom: 0;
+          }
+        }
+      }
+    }
+  }
+}
