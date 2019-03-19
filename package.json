@@ -12,7 +12,7 @@
     "web"
   ],
   "homepage": "https://ku-kom.github.io/bootstrap/",
-  "author": "University of Copenhagen, based on Twitter, Inc.",
+  "author": "University of Copenhagen, based on Twitter Bootstrap, Inc.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -30,15 +30,9 @@
   "devDependencies": {
     "btoa": "~1.2.1",
     "glob": "~7.1.3",
-    "@babel/core": "^7.3.4",
-    "@babel/plugin-proposal-object-rest-spread": "^7.3.4",
-    "@babel/preset-env": "^7.3.4",
-    "babel-plugin-transform-es2015-modules-strip": "^0.1.1",
-    "babel-preset-env": "^1.7.0",
     "browser-sync": "^2.26.3",
     "gulp": "^4.0.0",
     "gulp-autoprefixer": "^6.0.0",
-    "gulp-babel": "^8.0.0",
     "gulp-cli": "^2.0.1",
     "gulp-concat": "^2.6.1",
     "gulp-jshint": "^2.1.0",
@@ -63,13 +57,13 @@
     "dist",
     "fonts",
     "js/*.js",
-    "less/**/*.less",
+    "css/**/*.css",
     "gulpfile.js",
     "LICENSE"
   ],
   "private": true,
   "browserslist": [
-    "last 2 versions",
+    "last 3 versions",
     "> 1%"
   ],
   "dependencies": {}

@@ -12,7 +12,6 @@ var paths = require('./paths.js'),
   concat = require('gulp-concat'),
   jshint = require("gulp-jshint"),
   uglify = require('gulp-uglify'),
-  babel = require('gulp-babel'),
   rename = require("gulp-rename"),
   notify = require("gulp-notify"),
   autoprefixer = require("gulp-autoprefixer"),
@@ -26,9 +25,9 @@ var paths = require('./paths.js'),
 function serve(done) {
   browserSync.init({
     host: 'localhost',
-    port: 9001,
+    port: 9002,
     open: 'external',
-    proxy: 'http://localhost:9001/bootstrap/',
+    proxy: 'http://localhost:9002/bootstrap/',
     online: true,
     notify: false
   });
@@ -89,6 +88,18 @@ function fakStyles() {
     .pipe(gulp.dest(paths.cssDest + '/faculties'));
 }
 
+function gridboxes() {
+  return gulp
+    .src(paths.gridboxStyles)
+    .pipe(plumber({
+      errorHandler: notify.onError("Error: <%= error.message %>")
+    }))
+    .pipe(less())
+    .pipe(autoprefixer())
+    .pipe(css())
+    .pipe(gulp.dest(paths.cssDest));
+}
+
 function docTypeStyles() {
   return gulp
     .src(paths.docTypesCss)
@@ -116,13 +127,13 @@ function assetsCss() {
 
 // Lint scripts
 function scriptsLint() {
-  return gulp
-    .src(paths.jsSrc)
-    .pipe(plumber({
-      errorHandler: notify.onError("Error: <%= error.message %>")
-    }))
-    .pipe(jshint())
-    .pipe(jshint.reporter(jsStylish));
+  // return gulp
+  //   .src(paths.jsSrc)
+  //   .pipe(plumber({
+  //     errorHandler: notify.onError("Error: <%= error.message %>")
+  //   }))
+  //   .pipe(jshint())
+  //   .pipe(jshint.reporter(jsStylish));
   //.pipe(jshint.reporter('fail'));
 }
 
@@ -133,7 +144,8 @@ function scripts() {
     .pipe(plumber({
       errorHandler: notify.onError("Error: <%= error.message %>")
     }))
-    .pipe(babel())
+    .pipe(jshint())
+    .pipe(jshint.reporter(jsStylish))
     .pipe(concat("bootstrap.js"))
     .pipe(gulp.dest(paths.jsDest))
     .pipe(uglify())
@@ -184,7 +196,8 @@ function watch() {
   gulp.watch(paths.assetsCss, assetsCss);
   gulp.watch(paths.FAKstyles, fakStyles);
   gulp.watch(paths.docTypesCss, docTypeStyles);
-  gulp.watch(paths.jsSrc, gulp.series(scriptsLint, scripts));
+  gulp.watch(paths.gridboxStyles, gridboxes);
+  gulp.watch(paths.jsSrc, scripts);
   gulp.watch(paths.assetsJS, assetsScripts);
   gulp.watch(paths.DocsCss, docsCSS);
   gulp.watch(paths.docsHtmml, parseHtml);
@@ -195,8 +208,8 @@ gulp.task("fonts", copyFonts);
 gulp.task("clean", cleanUp);
 gulp.task("docs", docsCSS);
 gulp.task("assets", gulp.series(assetsScripts, assetsCss));
-gulp.task("js", gulp.series(scriptsLint, scripts, copyFiles));
-gulp.task("styles", gulp.series(styles, fakStyles, docTypeStyles, copyFiles));
+gulp.task("js", gulp.series(scripts, copyFiles));
+gulp.task("styles", gulp.series(styles, fakStyles, docTypeStyles, gridboxes, copyFiles));
 gulp.task("copy", gulp.series(copyFiles, copyFonts));
 
 var build = gulp.parallel("styles", "js", "assets", "fonts");

@@ -35,6 +35,7 @@ paths.jsDest = paths.dist + '/js';
 // Less files
 paths.allLessFiles = 'less/**/*.less';
 paths.bsLess = 'less/bootstrap.less';
+paths.gridboxStyles = 'less/ku-gridboxes-bootstrap.less';
 paths.cssDest = paths.dist + '/css';
 
 // FAK files
