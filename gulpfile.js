@@ -4,7 +4,6 @@ var paths = require('./paths.js'),
   browserSync = require('browser-sync').create(),
   reload = browserSync.reload,
   plumber = require('gulp-plumber'),
-  // shell = require('gulp-shell'),
   del = require('del'),
   less = require('gulp-less'),
   css = require('gulp-clean-css'),
@@ -16,12 +15,12 @@ var paths = require('./paths.js'),
   notify = require("gulp-notify"),
   autoprefixer = require("gulp-autoprefixer"),
   pump = require('pump'),
+  shell = require("gulp-shell"),
   jsStylish = require('jshint-stylish'),
-  svgmin = require('gulp-svgmin'),
   // Get data from file
   pkg = require('./package.json');
 
-
+// ** Local server ** //
 function serve(done) {
   browserSync.init({
     host: 'localhost',
@@ -34,12 +33,13 @@ function serve(done) {
   done();
 }
 
-// Clean build folder function:
+// ** Cleaning ** //
 function cleanUp(cb) {
   del.sync([paths.dist + '/**/*', paths.docs + '/dist/**/*']);
   cb();
 }
 
+// ** Copying ** //
 function copyFiles() {
   return gulp
     .src(paths.dist + '/**/*', {
@@ -57,7 +57,7 @@ function copyFonts() {
     .pipe(gulp.dest(paths.docs + '/dist'));
 }
 
-// Compile styles
+// ** Styles ** //
 function styles() {
   return gulp
     .src(paths.bsLess)
@@ -66,9 +66,9 @@ function styles() {
     }))
     .pipe(less())
     .pipe(concat("bootstrap.css"))
-    .pipe(gulp.dest(paths.cssDest))
     .pipe(autoprefixer())
     .pipe(css())
+    .pipe(gulp.dest(paths.cssDest))
     .pipe(rename({
       extname: '.min.css'
     }))
@@ -125,19 +125,7 @@ function assetsCss() {
     .pipe(gulp.dest(paths.cssDest));
 }
 
-// Lint scripts
-function scriptsLint() {
-  // return gulp
-  //   .src(paths.jsSrc)
-  //   .pipe(plumber({
-  //     errorHandler: notify.onError("Error: <%= error.message %>")
-  //   }))
-  //   .pipe(jshint())
-  //   .pipe(jshint.reporter(jsStylish));
-  //.pipe(jshint.reporter('fail'));
-}
-
-// Transpile, concatenate and minify scripts
+// ** Scripts section ** //
 function scripts() {
   return gulp
     .src(paths.jsSrc)
@@ -170,6 +158,7 @@ function assetsScripts() {
     .pipe(gulp.dest(paths.jsDest));
 }
 
+// ** Documentation HTML validation ** //
 function parseHtml() {
   return gulp
     .src(paths.docsParsedHtmml)
@@ -179,6 +168,7 @@ function parseHtml() {
     .pipe(browserSync.stream());
 }
 
+// ** Documentation styles ** //
 function docsCSS() {
   return gulp
     .src(paths.DocsCss)
@@ -191,6 +181,15 @@ function docsCSS() {
     .pipe(browserSync.stream());
 }
 
+function jekyll() {
+  return gulp.src(paths.gh_pages + '/**/*html')
+    .pipe(shell([
+      'bundle exec jekyll serve'
+    ]))
+    .pipe(browserSync.stream());
+}
+
+// ** Watch for changes ** //
 function watch() {
   gulp.watch(paths.allLessFiles, styles);
   gulp.watch(paths.assetsCss, assetsCss);
@@ -203,19 +202,20 @@ function watch() {
   gulp.watch(paths.docsHtmml, parseHtml);
 }
 
+// ** Task definition ** //
+gulp.task("jekyll", jekyll);
 gulp.task("html", parseHtml);
 gulp.task("fonts", copyFonts);
 gulp.task("clean", cleanUp);
 gulp.task("docs", docsCSS);
 gulp.task("assets", gulp.series(assetsScripts, assetsCss));
-gulp.task("js", gulp.series(scripts, copyFiles));
-gulp.task("styles", gulp.series(styles, fakStyles, docTypeStyles, gridboxes, copyFiles));
-gulp.task("copy", gulp.series(copyFiles, copyFonts));
-
+gulp.task("js", scripts);
+gulp.task("styles", gulp.series(styles, fakStyles, docTypeStyles, gridboxes));
+gulp.task("copy", gulp.series(copyFonts, copyFiles));
 var build = gulp.parallel("styles", "js", "assets", "fonts");
 gulp.task('default', gulp.series(cleanUp, build, copyFiles, serve, watch));
 
-// export tasks
+// ** Export tasks ** //
 exports.watch = watch;
 exports.scripts = scripts;
 exports.styles = styles;

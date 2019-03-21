@@ -76,8 +76,7 @@ paths.assetsCss = [
   paths.assets + '/css/ku-dk-frontpage/ku-dk-frontpage.css',
   paths.assets + '/css/social-feeds/instagram.css',
   paths.assets + '/css/social-feeds/twitter.css',
-  paths.assets + '/css/print/print.css',
-  paths.assets + '/css/slider/slick-theme.css'
+  paths.assets + '/css/print/print.css'
 ];
 
 module.exports = paths;

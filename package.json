@@ -13,7 +13,7 @@
   ],
   "homepage": "https://ku-kom.github.io/bootstrap/",
   "author": "University of Copenhagen, based on Twitter Bootstrap, Inc.",
-  "main": "index.js",
+  "main": "gulpfile.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -35,22 +35,20 @@
     "gulp-autoprefixer": "^6.0.0",
     "gulp-cli": "^2.0.1",
     "gulp-concat": "^2.6.1",
-    "gulp-jshint": "^2.1.0",
     "gulp-notify": "^3.2.0",
     "gulp-clean-css": "^4.0.0",
     "gulp-plumber": "^1.2.1",
     "gulp-htmlhint": "^2.2.1",
     "gulp-rename": "^1.4.0",
-    "gulp-shell": "^0.7.0",
     "gulp-less": "^4.0.1",
-    "gulp-svgmin": "^2.1.0",
+    "gulp-shell": "0.7.0",
     "gulp-uglify": "^3.0.1",
-    "jshint": "^2.10.1",
+    "gulp-jshint": "^2.1.0",
+    "jshint": "^2.10.2",
     "jshint-stylish": "^2.2.1",
     "markdown-it": "^8.4.2",
     "shelljs": "^0.8.3",
     "shx": "^0.3.2",
-    "text-table": "^0.2.0",
     "del": "^4.0.0"
   },
   "files": [
@@ -58,8 +56,7 @@
     "fonts",
     "js/*.js",
     "css/**/*.css",
-    "gulpfile.js",
-    "LICENSE"
+    "gulpfile.js"
   ],
   "private": true,
   "browserslist": [
