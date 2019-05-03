@@ -60,7 +60,7 @@ function copyFonts() {
 // ** Styles ** //
 function styles() {
   return gulp
-    .src(paths.bsLess)
+    .src(paths.bsLess, { sourcemaps: true })
     .pipe(plumber({
       errorHandler: notify.onError("Error: <%= error.message %>")
     }))
@@ -68,51 +68,51 @@ function styles() {
     .pipe(concat("bootstrap.css"))
     .pipe(autoprefixer())
     .pipe(css())
-    .pipe(gulp.dest(paths.cssDest))
+    .pipe(gulp.dest(paths.cssDest, { sourcemaps: '.' }))
     .pipe(rename({
       extname: '.min.css'
     }))
-    .pipe(gulp.dest(paths.cssDest))
+    .pipe(gulp.dest(paths.cssDest, { sourcemaps: '.' }))
     .pipe(browserSync.stream());
 }
 
 function fakStyles() {
   return gulp
-    .src(paths.FAKstyles)
+    .src(paths.FAKstyles, { sourcemaps: true })
     .pipe(plumber({
       errorHandler: notify.onError("Error: <%= error.message %>")
     }))
     .pipe(less())
     .pipe(autoprefixer())
     .pipe(css())
-    .pipe(gulp.dest(paths.cssDest + '/faculties'));
+    .pipe(gulp.dest(paths.cssDest + '/faculties', { sourcemaps: '.' }));
 }
 
 function gridboxes() {
   return gulp
-    .src(paths.gridboxStyles)
+    .src(paths.gridboxStyles, { sourcemaps: true })
     .pipe(plumber({
       errorHandler: notify.onError("Error: <%= error.message %>")
     }))
     .pipe(less())
     .pipe(autoprefixer())
     .pipe(css())
-    .pipe(gulp.dest(paths.cssDest));
+    .pipe(gulp.dest(paths.cssDest, { sourcemaps: '.' }));
 }
 
 function docTypeStyles() {
   return gulp
-    .src(paths.docTypesCss)
+    .src(paths.docTypesCss, { sourcemaps: true })
     .pipe(autoprefixer())
     .pipe(css({
       inline: ['none']
     }))
-    .pipe(gulp.dest(paths.cssDest + '/doctypes'));
+    .pipe(gulp.dest(paths.cssDest + '/doctypes', { sourcemaps: '.' }));
 }
 
 function assetsCss() {
   return gulp
-    .src(paths.assetsCss)
+    .src(paths.assetsCss, { sourcemaps: true })
     .pipe(plumber({
       errorHandler: notify.onError("Error: <%= error.message %>")
     }))
@@ -122,20 +122,20 @@ function assetsCss() {
       dirname: '',
       extname: '.min.css'
     }))
-    .pipe(gulp.dest(paths.cssDest));
+    .pipe(gulp.dest(paths.cssDest, { sourcemaps: '.' }));
 }
 
 // ** Scripts section ** //
 function scripts() {
   return gulp
-    .src(paths.jsSrc)
+    .src(paths.jsSrc, { sourcemaps: true })
     .pipe(plumber({
       errorHandler: notify.onError("Error: <%= error.message %>")
     }))
     .pipe(jshint())
     .pipe(jshint.reporter(jsStylish))
     .pipe(concat("bootstrap.js"))
-    .pipe(gulp.dest(paths.jsDest))
+    .pipe(gulp.dest(paths.jsDest, { sourcemaps: '.' }))
     .pipe(uglify())
     .pipe(rename({
       extname: '.min.js'
@@ -146,7 +146,7 @@ function scripts() {
 
 function assetsScripts() {
   return gulp
-    .src(paths.assetsJS)
+    .src(paths.assetsJS, { sourcemaps: true })
     .pipe(plumber({
       errorHandler: notify.onError("Error: <%= error.message %>")
     }))
@@ -155,7 +155,7 @@ function assetsScripts() {
       dirname: '',
       extname: '.min.js'
     }))
-    .pipe(gulp.dest(paths.jsDest));
+    .pipe(gulp.dest(paths.jsDest, { sourcemaps: '.' }));
 }
 
 // ** Documentation HTML validation ** //

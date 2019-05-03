@@ -1,0 +1,1 @@
+{"version":3,"sources":["nyhed.css"],"names":[],"mappings":"AAAA,yCACE,YACE,WAAA","file":"nyhed.css","sourcesContent":["@media only screen and (max-width: 991px) {\n  .nyhedsdato {\n    margin-top: 23px;\n  }\n}\n"]}

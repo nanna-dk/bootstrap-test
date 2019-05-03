@@ -1,1 +1,2 @@
 @import url(publikationsliste.css);@import url(../datatables.min.css);#medarbejdertable_wrapper{margin-top:18px}#medarbejdertable tr th{white-space:nowrap}#medarbejdertable tr th{border-bottom:0}#medarbejdertable tr th:last-child input{display:none}#medarbejdertable tr th:nth-last-of-type(-n+2){padding-right:8px;cursor:default}#medarbejdertable tr th:nth-last-of-type(-n+2):after{display:none}#medarbejdertable tr th:nth-last-child(2){width:25%!important}#medarbejdertable tr th:last-child{width:20%!important}
+/*# sourceMappingURL=medarbejderoversigt.css.map */

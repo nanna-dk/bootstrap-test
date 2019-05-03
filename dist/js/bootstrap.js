@@ -1946,3 +1946,4 @@ function shareURL(dest) {
   });
 
 })(jQuery);
+//# sourceMappingURL=bootstrap.js.map
