@@ -1,5 +1,4 @@
 /* Media Player controls using HTML5's Media API
- *
  * Modified for Bootstrap by Nanna Ellegaard 2019
  */
 
@@ -16,7 +15,7 @@ var video,
   upperCaseFirst;
 
 var initialisevideo = function () {
-  // Get a handle to the player
+  // Get player id
   video = document.getElementById('video');
 
   // Get handles to each of the buttons and required elements
@@ -39,18 +38,9 @@ var initialisevideo = function () {
   }, false);
 
   video.addEventListener('pause', function () {
-    // Change the button to be a play button
+    // If paused, change the button to be a play button
     changeButtonType(playPauseBtn, 'play');
   }, false);
-
-  // video.addEventListener('volumechange', function () {
-  //   // Update the button to be mute/unmute
-  //   if (video.muted) {
-  //     changeButtonType(muteBtn, 'volume-up');
-  //   } else {
-  //     changeButtonType(muteBtn, 'volume-off');
-  //   }
-  // }, false);
 
   video.addEventListener('ended', function () {
     this.pause();
@@ -80,18 +70,12 @@ var stopPlayer = function () {
   video.currentTime = 0;
 };
 
-// Changes the volume on the media player using +/- buttons
-// var changeVolume = function (direction) {
-//   if (direction === '+') video.volume += video.volume == 1 ? 0 : 0.1;
-//   else video.volume -= (video.volume == 0 ? 0 : 0.1);
-//   video.volume = parseFloat(video.volume).toFixed(1);
-// };
-
 // Changes the volume on the media player using a slider
-var setVolume = function (val) {
+var setVolume = function (v) {
   video.muted = false;
-  var vol = val / 100;
+  var vol = v / 100;
   video.volume = vol;
+  volumeBtn.title = 'Volume: ' + v + '%'
   volumeBtn.setAttribute("aria-valuenow", vol);
 };
 
@@ -99,14 +83,14 @@ var setVolume = function (val) {
 var toggleMute = function () {
   if (video.muted) {
     // Change the cutton to be a mute button
-    changeButtonType(muteBtn, 'volume-off');
-    muteBtn.title = 'Unmuted';
+    changeButtonType(muteBtn, 'volume-up');
+    muteBtn.title = 'Unmute';
     // Unmute the media player
     video.muted = false;
   } else {
     // Change the button to be an unmute button
-    changeButtonType(muteBtn, 'volume-up');
-    muteBtn.title = 'Muted';
+    changeButtonType(muteBtn, 'volume-off');
+    muteBtn.title = 'Mute';
     // Mute the media player
     video.muted = true;
   }
@@ -122,7 +106,7 @@ var replayMedia = function () {
 var updateProgressBar = function () {
   // Work out how much of the media has played via the duration and currentTime parameters
   var percentage = Math.floor((100 / video.duration) * video.currentTime);
-  // Update the progress bar's values
+  // Update the progress bar with current values
   progressBar.value = percentage;
   progressBar.style.width = percentage + '%';
   progressBar.setAttribute("aria-valuenow", percentage);
@@ -138,7 +122,12 @@ var changeButtonType = function (btn, value) {
   btn.setAttribute("aria-label", upperCaseFirst(value));
   // All available glyphicons
   var span = btn.querySelector('.glyphicon');
-  span.classList.remove("glyphicon-volume-off", "glyphicon-volume-up", "glyphicon-play", "glyphicon-pause");
+  // remove glyphicons before adding new
+  span.classList.forEach(function (className) {
+    if (className.startsWith('glyphicon-')) {
+      span.classList.remove(className);
+    }
+  });
   span.classList.add("glyphicon-" + value);
 };
 
@@ -161,8 +150,12 @@ var loadVideo = function () {
 // Checks if the browser can play this particular type of file or not
 var canPlayVideo = function (ext) {
   var ableToPlay = video.canPlayType('video/' + ext);
-  if (ableToPlay == '') return false;
-  else return true;
+  if (ableToPlay == '') {
+    //Eempty string: The specified media type definitely cannot be played.
+    return false;
+  } else {
+    return true;
+  }
 };
 
 // Resets the media player
@@ -171,50 +164,29 @@ var resetPlayer = function () {
   progressBar.value = 0;
   // Move the media back to the start
   video.currentTime = 0;
-  // Ensure that the play pause button is set as 'play'
-  changeButtonType(playPauseBtn, 'play');
-};
-
-// Toggle full screen
-var fullScreenEnabled = !!(document.fullscreenEnabled || document.mozFullScreenEnabled || document.msFullscreenEnabled || document.webkitSupportsFullscreen || document.webkitFullscreenEnabled || document.createElement('video').webkitRequestFullScreen);
-
-if (!fullScreenEnabled) {
-  fullScreen.disabled = true;
-}
-
-// checks if the browser is already in fullscreen mode
-var isFullScreen = function () {
-  return !!(document.fullScreen || document.webkitIsFullScreen || document.mozFullScreen || document.msFullscreenElement || document.fullscreenElement);
-};
-
-// sets the value of a data-fullscreen attribute on the videoContainer (this makes use of data-states).
-var setFullscreenData = function (state) {
-  video.setAttribute('data-fullscreen', !!state);
+  // Check if button is play or pause
+  togglePlayPause();
 };
 
 // Fullscreen for various browsers
 var handleFullscreen = function () {
-  if (isFullScreen()) {
-    if (document.exitFullscreen) document.exitFullscreen();
-    else if (document.mozCancelFullScreen) document.mozCancelFullScreen();
-    else if (document.webkitCancelFullScreen) document.webkitCancelFullScreen();
-    else if (document.msExitFullscreen) document.msExitFullscreen();
-    setFullscreenData(false);
-  } else {
-    if (video.requestFullscreen) video.requestFullscreen();
-    else if (video.mozRequestFullScreen) video.mozRequestFullScreen();
-    else if (video.webkitRequestFullScreen) video.webkitRequestFullScreen();
-    else if (video.msRequestFullscreen) video.msRequestFullscreen();
-    setFullscreenData(true);
+  if (video.mozRequestFullScreen) {
+    video.mozRequestFullScreen();
+  } else if (video.webkitEnterFullScreen) {
+    video.webkitEnterFullScreen();
+  } else if (video.webkitRequestFullScreen) {
+    video.webkitRequestFullScreen();
+  } else if (video.msRequestFullscreen) {
+    video.msRequestFullscreen()
   }
 };
 
-// Make attributes values first letter uppercase
+// Make attributes values first letter uppercase because it looks nice
 var upperCaseFirst = function (str) {
   return str.charAt(0).toUpperCase() + str.substring(1);
 };
 
-// Wait for the DOM to be loaded before initialising the media player
+// Initialize the player when the DOM is ready
 document.addEventListener("DOMContentLoaded", function () {
   'use strict';
   initialisevideo();

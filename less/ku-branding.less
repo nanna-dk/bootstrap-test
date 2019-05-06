@@ -3,10 +3,6 @@
 .ku-branding {
   background-color: @white-color;
   position: relative;
-  @media (max-width: @screen-xs-max) {
-    padding-left: @grid-gutter-by-half;
-    padding-right: @grid-gutter-by-half;
-  }
 
   .ku-branding-logo {
     .logo-img {
@@ -14,7 +10,7 @@
       // fix for IE 8-10 since svgs are disproportionately sized
       width: 100% \9;
     }
-    height: @ku-branding-box-height;
+    height: 83px;
     width: 61px;
     z-index: 10;
     position: relative;
@@ -23,35 +19,40 @@
     @media (max-width: @screen-sm) {
       width: 50px;
       bottom: -20px;
-      left: @grid-gutter-by-half;
+      left: 5px;
     }
   }
 
   .ku-branding-text {
-    max-height: @ku-branding-box-height;
+    max-height: 63px;
     position: absolute;
     left: 80px;
-    @media (min-width: @screen-sm) {
-      left: 90px;
-    }
-    bottom: 15px;
+    bottom: 13px;
     letter-spacing: 0.936px;
     padding-right: 10px;
+    @media (min-width: @screen-sm) {
+      left: 100px;
+      bottom: 18px;
+    }
+
     a {
       text-decoration: none;
     }
 
     .ku-branding-text-major {
-      font-size: 14px;
+      font-size: 15px;
       line-height: 1.2;
-      @media (min-width: @screen-sm) {
+      @media (min-width: @screen-md) {
         font-size: @ku-branding-text-font-size;
       }
     }
 
     .ku-branding-text-sub {
       font-size: @font-size-base;
-      @media (min-width: @screen-sm) {
+      @media (min-width: @screen-xs) and (max-width: @screen-sm-max) {
+        font-size: 13px;
+      }
+      @media (min-width: @screen-md) {
         font-size: @font-size-large;
       }
     }
@@ -67,8 +68,14 @@
     }
     &:extend(.clearfix all);
     position: relative;
-    border-bottom: 1px solid @ku-red;
+  }
 
+  &::after {
+    content: "";
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+    border-bottom: 1px solid @ku-red;
 
     .theme-samf & {
       border-bottom: 1px solid @samf;
@@ -93,5 +100,18 @@
     .theme-teo & {
       border-bottom: 1px solid @teol;
     }
+  }
+}
+@media all and (max-width: @screen-sm) and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  // Special styles for Internet Explorer 11
+  .ku-branding .ku-branding-logo {
+    bottom: -12px;
+  }
+}
+@media (max-width: @screen-xs-max) {
+  // Hide menus when in mobile mode
+  .ku-nav,
+  .search-area {
+    display: none;
   }
 }

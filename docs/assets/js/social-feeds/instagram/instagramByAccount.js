@@ -1,7 +1,7 @@
 /* NEL, KU KOM Script to fetch images from Instagram by access token.
  * Login to Instagram to register an application and generate an access token using this url - replace with your values:
  * https://api.instagram.com/oauth/authorize/?client_id=CLIENT-ID&redirect_uri=REDIRECT-URI&response_type=token
- * Needs html like this: <div id="ig" data-account="university_of_copenhagen" data-token="xxxx" data-images="3" class="gridbox with-img size2">
+ * Needs html like this: <div id="ig" data-account="university_of_copenhagen" data-token="xxxx" data-images="3" data-hidemobile="false" class="gridbox with-img size2">
    <div class="box1">
      <a href="https://www.instagram.com/university_of_copenhagen/">
        <div class="header">@university_of_copenhagen på Instagram</div>
@@ -18,15 +18,24 @@
     var $loading = $wrapper.find(".ku-loading");
     var $token = $wrapper.attr("data-token");
     var $user = $wrapper.attr("data-account");
+    // $isMobile must be true or null and in mobile view to be true
+    var $isMobile = (typeof $wrapper.attr("data-hidemobile") == null || true && (window.matchMedia('(max-width: 767px)').matches) === true) ? true : false;
     var $accountName = (typeof $user === 'undefined') ? 'university_of_copenhagen' : $user.trim();
     var $batchClass = "batch";
+    var $number = $wrapper.attr("data-images");
+    //$number = $number.toString();
+    var $images = 12;
+    // We always display 2 images on mobile
+    var $numbers = (window.matchMedia('(max-width: 480px)').matches) ? 2 : parseInt($number, 10);
     var $cachedWidth = $('body').prop('clientWidth');
+
+
 
     function getInstagramByAccount(access_token) {
       // Fetch Instagram images by hashtag
-      var $number = $wrapper.attr("data-images");
-      var $images = 12;
-      var $numbers = (window.matchMedia('(max-width: 480px)').matches) ? 1 : parseInt($number);
+      if ($isMobile === true) {
+        return //Don't run on mobile
+      }
       $container.empty();
       if (access_token) {
         var $url = "https://api.instagram.com/v1/users/self/media/recent/?access_token=" + access_token;
@@ -36,11 +45,12 @@
           dataType: "jsonp",
           success: function (data) {
             //console.log(data);
+            $loading.hide();
             for (var i = 0; i < $images; i++) {
               var img = data.data[i].images.standard_resolution.url;
               var link = data.data[i].link;
               var desc = data.data[i].caption.text;
-              $container.append('<a href="' + link + '" target="_blank"><img src="' + img + '" alt="' + $user + '"></a>');
+              $container.append('<a href="' + link + '" rel="noopener" target="_blank"><img src="' + img + '" alt="' + $user + '"></a>');
             }
             var batch;
             $('a', $container).each(function (k, e) {
@@ -56,9 +66,7 @@
             console.log(xhr.responseText);
           },
           complete: function () {
-            $loading.hide();
             $container.rotator();
-            $wrapper.css('visibility', 'visible');
           }
         });
       }
@@ -105,7 +113,7 @@
       // Init script
       getInstagramByAccount($token);
     } else {
-      console.log('Add Instagram access token and number of images to display using data-token="" and data-images="" on the container');
+      //console.log('Add Instagram access token and number of images to display using data-token="" and data-images="" on the container.');
     }
 
     $wrapper.click(function (e) {

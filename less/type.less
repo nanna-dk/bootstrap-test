@@ -39,8 +39,14 @@ h6 {
   &:empty {
     display: none;
   }
-  &> strong {
+
+  & > strong {
     font-weight: inherit;
+  }
+
+  & > br {
+    // Make up for editor's habits of adding <br> inside headers...
+    display: none;
   }
 }
 
@@ -113,11 +119,22 @@ h6 {
   font-size: @font-size-h6;
   font-weight: 600;
 }
+
+.gcitem {
+  // If h1 is not the first element of the grid page, give it more top-margin
+  & > * {
+    & ~ h1 {
+      &:first-of-type {
+        margin-top: 20px;
+      }
+    }
+  }
+}
 // Body text
 // -------------------------
 
 p {
-  margin: 8px 0 15px 0;
+  margin: 8px 0 15px;
 
   &:empty {
     //Hide empty p-tags comming from the editor
@@ -331,7 +348,12 @@ dd {
 // Misc
 // -------------------------
 // Abbreviations and acronyms
-abbr[title],// Add data-* attribute to help out our tooltip plugin, per https://github.com/twbs/bootstrap/issues/5257
+abbr[title] {
+  text-decoration: none;
+  border-bottom: 0;
+}
+
+// Add data-* attribute to help out our tooltip plugin, per https://github.com/twbs/bootstrap/issues/5257
 
 abbr[data-original-title] {
   cursor: help;
@@ -352,22 +374,26 @@ blockquote {
   }
   float: right;
   position: relative;
-  padding: (@line-height-computed / 2) 0 (@line-height-computed / 2) @line-height-computed;
-  margin: 10px 0 10px 10px;
+  padding: 0 0 (@line-height-computed / 2) @line-height-computed;
+  margin: 0 0 7px 10px;
   font-size: @blockquote-font-size;
   .icon-quote;
 
   &:before {
-    position: absolute;
     top: 10px;
     left: 0;
     font-size: 45px;
     color: @blockquote-icon-color;
     .icon;
+    line-height: 0.5;
+  }
+
+  p {
+    margin-top: 5px;
+    margin-bottom: 3px;
   }
 
   ol,
-  p,
   ul {
     &:last-child {
       margin-bottom: 0;
@@ -393,12 +419,12 @@ blockquote {
   }
 }
 
-.right-side, .column1 {
+.column1,
+.right-side {
   blockquote {
     width: 100%!important;
   }
 }
-
 // Opposite alignment of blockquote
 //
 // .blockquote-reverse {

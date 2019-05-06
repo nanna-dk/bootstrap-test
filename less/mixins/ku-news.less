@@ -1,14 +1,60 @@
 // News and events
-
 // Float image right
+//New - for items lists
+
+.list-img-right() {
+  .item-list {
+    .item-body {
+      &:first-child {
+        padding-left: 0;
+      }
+    }
+
+    &.with-img {
+      .item-left {
+        display: block;
+        float: right;
+        text-align: right;
+      }
+    }
+  }
+}
+
+.list-img-left() {
+  .item-list {
+    &.with-img {
+      .item {
+        display: flex;
+        align-items: flex-start;
+      }
+
+      .item-left {
+        display: block;
+        width: @ku-thumbnails-size;
+      }
+
+      .item-right {
+        display: none;
+      }
+
+      .item-body {
+        flex: 1;
+      }
+    }
+  }
+}
+//--------------//
+
 .img-right() {
   .media-list {
     .media {
       .media-left {
         display: none;
       }
+
       .media-body {
         padding-left: 0!important;
+
         > .media-right,
         + .media-right {
           float: right;
@@ -17,9 +63,8 @@
     }
   }
 }
-
-
 // Float image left
+
 .img-left() {
   .media-list {
     .media {
@@ -30,8 +75,10 @@
         }
       }
 
-      .news-teaser {
-        margin-left: @ku-thumbnails-size;
+      &+ .media-left {
+        .news-teaser {
+          margin-left: @ku-thumbnails-size;
+        }
       }
     }
 

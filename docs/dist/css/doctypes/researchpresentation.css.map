@@ -1,0 +1,1 @@
+{"version":3,"sources":["researchpresentation.css"],"names":[],"mappings":"AAAA,qCAEA,gCACE,MAAA,gBAGF,uBACE,WAAA","file":"researchpresentation.css","sourcesContent":["@import url(\"medarbejderoversigt.css\");\n/* Obvius backend page width */\n.obvius-common #content-wrapper {\n  width: 783px!important;\n}\n\n.employee-list-heading {\n  margin-top: 0;\n}\n"]}

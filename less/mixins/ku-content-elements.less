@@ -29,12 +29,28 @@
 .img-fix-for-ie() {
   // IE doesn't understand flex and object-cover, so we have to give special treatment...  #?$¤!%...
   min-height: 100%;
+  max-width: none;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translateX(-50%) translateY(-50%) translate3d(0px, 0px, 0px);
   backface-visibility: hidden;
   -ms-interpolation-mode: bicubic;
+}
+
+.img-position-left() {
+  // Position image left
+  position: absolute;
+  left: 0!important;
+  transform: translateY(-50%) translateX(0) translate3d(0,0,0)!important;
+}
+
+.img-position-right() {
+  // Position image right
+  position: absolute;
+  left: auto!important;
+  right: 0;
+  transform: translateY(-50%) translateX(0) translate3d(0,0,0)!important;
 }
 
 .img-fix-for-ie-size2() {

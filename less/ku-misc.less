@@ -3,7 +3,6 @@
 // Various extra classes that don't belong in other .less files
 // ---------------------------------------------------------------
 
-
 .divider {
   margin: @margin10 0;
   &:extend(.clearfix all);
@@ -24,7 +23,6 @@
 .page-icons {
   display: none;
 }
-
 @media (min-width: @screen-sm) {
   // Utility icon
   .page-icons {
@@ -42,7 +40,6 @@
   .row-equal-height {
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
   }
 
   .jump,
@@ -68,7 +65,7 @@
 
         &:active,
         &:focus {
-          color: #51a7e8;
+          color: @link-hover-color;
           top: 0;
           left: 0;
           z-index: 10;
@@ -88,13 +85,11 @@
     }
   }
 }
-
 @media (max-width: @screen-sm) {
   .jumpbox {
     display: none;
   }
 }
-
 
 .relative {
   position: relative;
@@ -151,18 +146,66 @@
 }
 
 .ku-loading {
+  margin: 0 auto;
+  display: inline-block;
+  vertical-align: text-bottom;
   border-bottom: 3px solid @gray;
   border-left: 3px solid @gray;
   border-right: 3px solid @gray;
   border-top: 3px solid @ku-red;
-  border-radius: 100%;
-  height: 25px;
-  width: 25px;
-  animation: ku-loading 0.6s infinite linear;
-  overflow: auto;
-  position: absolute;
-  top: 50%;
-  left: 50%;
+  border-radius: 50%;
+  width: 3rem;
+  height: 3rem;
+  animation: ku-loading 0.75s infinite linear;
+}
+
+.ku-dots-loading {
+  position: relative;
+  margin-left: 10px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: @gray-444;
+  color: @gray-444;
+  animation: ku-dots 0.6s infinite linear alternate;
+  animation-delay: 0.3s;
+
+  &::after,
+  &::before {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+  }
+
+  &::before {
+    left: -10px;
+    background-color: @gray-444;
+    color: @gray-444;
+    animation: ku-dots 0.6s infinite alternate;
+    animation-delay: 0s;
+  }
+
+  &::after {
+    left: 10px;
+    background-color: @gray-444;
+    color: @gray-444;
+    animation: ku-dots 0.6s infinite alternate;
+    animation-delay: 0.6s;
+  }
+}
+@keyframes ku-dots {
+  0% {
+    background-color: @gray-444;
+  }
+
+  100%,
+  50% {
+    background-color: @gray;
+  }
 }
 // Jump to ID
 
@@ -190,8 +233,27 @@
     color: inherit;
   }
 }
-.embed-responsive {
-  &+ .embed-responsive {
-    margin-top: @grid-gutter-height;
+
+@keyframes ku-ken-burns {
+  0% {
+    transform: scale3d(1, 1, 1) translate3d(0, 0, 0) translateZ(0);
+  }
+
+  100% {
+    transform: scale3d(1.5, 1.5, 1.5) translate3d(-12.5%, -12.5%, 0) translateZ(0);
+  }
+}
+
+.ku-ken-burns-container {
+  position: relative;
+  overflow: hidden;
+
+  img {
+    &.with-animation {
+      backface-visibility: hidden;
+      will-change: transform, opacity;
+      transform-style: preserve-3d;
+      animation: 20s ease-out forwards ku-ken-burns;
+    }
   }
 }

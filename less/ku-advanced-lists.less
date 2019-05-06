@@ -9,15 +9,15 @@
   li {
     display: flex;
     flex-direction: column;
-    min-height: 80px;
+    min-height: 100px;
     background-color: @gray-f5;
     border-radius: @border-radius-base;
     zoom: 1;
 
     .list-img {
       display: block;
-      height: @gridbox3;
-      flex: 0 0 @gridbox3;
+      height: @gridbox2;
+      flex: 0 0 @gridbox2;
       background-position: center;
       background-size: cover;
       background-repeat: no-repeat;
@@ -91,6 +91,16 @@
       .list-content {
         order: 2;
         flex: 1;
+      }
+    }
+  }
+}
+@media all and (min-width: @screen-sm) and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  // IE11 hack
+  .advanced-list {
+    li {
+      .list-img {
+        min-height: 100px;
       }
     }
   }

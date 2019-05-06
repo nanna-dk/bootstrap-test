@@ -1,5 +1,102 @@
 // KU Nyheder & arrangementer
 // Global menu news
+// KU custom lists
+
+.item-list {
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+
+  .item {
+    padding: 15px 0;
+
+    &:first-child {
+      padding-top: 3px;
+    }
+
+    &+ .item {
+      border-top: 1px solid @gray;
+
+      &:last-child {
+        border-bottom: 1px solid @gray;
+      }
+    }
+  }
+
+  .item-heading {
+    .nyhedsoverskrift();
+    margin: 7px 0;
+
+    a {
+      font-size: inherit;
+      color: inherit;
+      display: block;
+    }
+  }
+
+  .item-date {
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 15px;
+    color: @gray-light;
+    margin-bottom: 7px;
+  }
+
+  .item-body {
+    & > .item-heading {
+      &:first-child {
+        // No date, no top-margin
+        margin-top: 0;
+      }
+    }
+  }
+
+  .item-trunc {
+    & > div {
+      display: inline;
+    }
+  }
+
+  .item-left,
+  .item-right {
+    display: none;
+
+    img {
+      .img-thumbnail;
+      width: 55px;
+    }
+
+    a {
+      display: inline-block;
+    }
+  }
+
+  &.with-img {
+    .item-left,
+    .item-right {
+      width: @ku-thumbnails-size;
+    }
+
+    .item {
+      & > .item-body {
+        &:first-child {
+          // If no image exists (no .item-left) but it's set to be displayed, move content in, so that there's an empty placeholder instead of an image.
+          padding-left: @ku-thumbnails-size;
+        }
+      }
+    }
+  }
+
+  .right-side & {
+    .item {
+      & > .item-body {
+        &:first-child {
+          padding-left: 0!important;
+        }
+      }
+    }
+  }
+}
 
 .media-list {
   .media-left,
@@ -18,7 +115,7 @@
   .media {
     margin-top: 0;
     padding-top: 15px;
-    padding-bottom: 5px;
+    padding-bottom: 15px;
 
     &:first-child {
       padding-top: 3px;
@@ -47,17 +144,19 @@
       }
     }
 
-    .media-body {
-      p {
-        margin-top: 0;
-        margin-bottom: 7px;
-      }
-    }
-
     .media-object {
       .img-thumbnail;
       width: 55px;
       box-sizing: content-box;
+    }
+
+    p {
+      margin-top: 0;
+      margin-bottom: 7px;
+    }
+
+    .eventteaser {
+      margin: 0;
     }
   }
 
@@ -111,7 +210,8 @@
     }
 
     .news-teaser {
-      margin-top: 3px;
+      margin-top: 0;
+      margin-bottom: 0;
     }
   }
 }
@@ -130,6 +230,10 @@
   .eventdate {
     margin-bottom: 5px;
   }
+
+  .readmore {
+    margin-bottom: 0;
+  }
 }
 // Arrangementer - højre kolonne
 
@@ -147,6 +251,16 @@
         }
       }
     }
+  }
+}
+
+.media-event {
+  .media-heading {
+    margin-bottom: 0!important;
+  }
+
+  .eventteaser {
+    margin-top: 5px!important;
   }
 }
 
@@ -173,19 +287,31 @@
   color: @gray-light;
 }
 
+nav[aria-label="Pager"] {
+  + .nyhedsliste {
+    border-top: 1px solid @gray;
+
+    & > .media {
+      &:first-child {
+        padding-top: 15px;
+      }
+    }
+  }
+}
+
 .readAll {
   margin-bottom: 0;
 }
 // Search news forms
 
 .search-news {
-  padding: 5px 15px !important;
+  padding: 5px 15px;
 
   form {
     display: flex;
-    @media only screen and (min-width: @screen-sm-max) {
-      height: 30px;
-    }
+    // @media only screen and (min-width: @screen-sm-max) {
+    //   height: 30px;
+    // }
   }
 
   .search-news-query {
@@ -230,41 +356,72 @@
 }
 // Float images right on single column spans:
 
-// #gridsidebar .single-column .column1,
-// .one-one-two-column .column1,
-// .one-one-two-column .column2,
-// .one-three-column .column1,
-// .one-two-column .column1,
-// .quad-column [class*=column],
-// .three-one-column .column2,
-// .triple-column [class*=column],
-// .two-one-column .column2,
-// .two-one-one-column .column2,
-// .two-one-one-column .column3 {
-//   .img-right();
-// }
+#gridsidebar .single-column .column1,
+.one-one-two-column .column1,
+.one-one-two-column .column2,
+.one-three-column .column1,
+.one-two-column .column1,
+.quad-column [class*=column],
+.right-side,
+.three-one-column .column2,
+.triple-column [class*=column],
+.two-one-column .column2,
+.two-one-one-column .column2,
+.two-one-one-column .column3 {
+  .img-right();
+  .list-img-right();
+}
+// Special hooks for calendar lists
+
+.calendarbox {
+  .media-body {
+    & + .media-right {
+      display: none;
+    }
+  }
+
+  .media-event {
+    // No image
+    > .media-body {
+      &:first-child {
+        padding-left: 0!important;
+      }
+    }
+  }
+}
 // Float images left on multiple column spans
 
-// .double-column [class*=column],
-// .gridcontent:not(#gridsidebar) .single-column .column1,
-// .one-one-two-column .column3,
-// .one-three-column .column2,
-// .one-two-column .column2,
-// .three-one-column .column1,
-// .two-one-column .column1,
-// .two-one-one-column .column1 {
-//   .img-left();
-// }
-// GridStandard double columns override
+.double-column [class*=column],
+.gridcontent:not(#gridsidebar) .single-column .column1,
+.one-one-two-column .column3,
+.one-three-column .column2,
+.one-two-column .column2,
+.three-one-column .column1,
+.two-one-column .column1,
+.two-one-one-column .column1 {
+  .img-left();
+  .list-img-left();
+}
+//GridStandard double columns override - float img right
 
-// .GridStandard .double-column [class*=column] {
-//   .img-right();
-//
-//   .media-right {
-//     display: block!important;
-//   }
-//
-//   .news-teaser {
-//     margin-left: 0!important;
-//   }
-// }
+.GridStandard .double-column [class*=column] {
+  .img-right();
+
+  .media-right {
+    display: block!important;
+  }
+
+  .news-teaser {
+    margin-left: 0!important;
+  }
+  .list-img-right();
+
+  .item-list {
+    &.with-img {
+      .item {
+        display: block;
+        align-items: unset;
+      }
+    }
+  }
+}

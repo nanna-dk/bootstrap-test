@@ -1,6 +1,6 @@
 /* NEL, KU KOM
  * Script to fetch images from Instagram by hashtag. Based on scrapung - may stop working at any time.
- * Needs html like this: <div id="instagram_hash" data-hashtag="blivstuderendepåKinastudier" data-images="6" class="instagram-box"></div>
+ * Needs html like this: <div id="instagram_hash" data-hashtag="blivstuderendepåKinastudier" data-images="6" data-hidemobile="false" class="instagram-box"></div>
  * data-hashtag represents the hashtag to search for.
  * data-images pepresents the number of images to display at a time. */
 (function ($) {
@@ -9,17 +9,25 @@
     var $cachedWidth = $('body').prop('clientWidth');
     var $wrapper = $('#ig_hashtag');
     var $container = $wrapper.find("#imageBox");
+    // $isMobile must be true or null and in mobile view to be true
+    var $isMobile = (typeof $wrapper.attr("data-hidemobile") == null || true && (window.matchMedia('(max-width: 767px)').matches) === true) ? true : false;
     var $hash = (typeof $wrapper.attr("data-hashtag") === 'undefined') ? null : $wrapper.attr("data-hashtag").toLowerCase().trim();
     var $batchClass = "batch";
+    var $number = $wrapper.attr("data-images");
+    //$number = $number.toString();
+    var $images = 12;
+    // We always display 2 images on mobile
+    var $numbers = (window.matchMedia('(max-width: 480px)').matches) ? 2 : parseInt($number, 10);
     var $loading = $wrapper.find(".ku-loading");
 
     function getInstagramByHash(hashtag) {
       // Fetch Instagram images by hashtag
-      var $number = $wrapper.attr("data-images");
-      var $images = 12;
-      var $numbers = (window.matchMedia('(max-width: 480px)').matches) ? 1 : parseInt($number);
+      if ($isMobile === true) {
+        return //Don't run on mobile
+      }
       $container.empty();
       if (hashtag) {
+        // This php script is scraping content from the Instagram tags page and serving it as json:
         var $url = "https://cms.secure.ku.dk/instacms/instagramByUserOrTag/instagramScrapeToJson.php";
         $.ajax({
           url: $url,
@@ -30,11 +38,12 @@
           }),
           success: function (data) {
             //console.log(data);
+            $loading.hide();
             var entry = data.entry_data.TagPage[0].graphql.hashtag.edge_hashtag_to_media.edges;
             $.each(entry, function (i, v) {
               var img = entry[i].node.thumbnail_src;
               var shortcode = entry[i].node.shortcode;
-              $container.append('<a href="https://www.instagram.com/p/' + shortcode + ' " target="_blank"><img src="' + img + '" alt="' + hashtag + '"></a>');
+              $container.append('<a href="https://www.instagram.com/p/' + shortcode + ' " target="_blank" rel="noopener"><img src="' + img + '" alt="' + hashtag + '"></a>');
               return i < $images - 1;
             });
             var batch;
@@ -51,9 +60,7 @@
             console.log(xhr.responseText);
           },
           complete: function () {
-            $loading.hide();
             $container.rotator();
-            $wrapper.css('visibility', 'visible');
           }
         });
       }
@@ -100,7 +107,7 @@
     if ($hash) {
       getInstagramByHash($hash);
     } else {
-      console.log('Add Instagram hashtag to search for and number of images to display using data-hashtag="" and data-images="" on the container');
+      //console.log('Add Instagram hashtag to search for and number of images to display using data-hashtag="" and data-images="" on the container');
     }
 
     //On resize, wait and reload function

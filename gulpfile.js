@@ -135,12 +135,12 @@ function scripts() {
     .pipe(jshint())
     .pipe(jshint.reporter(jsStylish))
     .pipe(concat("bootstrap.js"))
-    .pipe(gulp.dest(paths.jsDest, { sourcemaps: '.' }))
-    .pipe(uglify())
+    .pipe(gulp.dest(paths.jsDest))
+    .pipe(uglify().on('error', console.error))
     .pipe(rename({
       extname: '.min.js'
     }))
-    .pipe(gulp.dest(paths.jsDest))
+    .pipe(gulp.dest(paths.jsDest, { sourcemaps: '.' }))
     .pipe(browserSync.stream());
 }
 
@@ -150,7 +150,7 @@ function assetsScripts() {
     .pipe(plumber({
       errorHandler: notify.onError("Error: <%= error.message %>")
     }))
-    .pipe(uglify())
+    .pipe(uglify().on('error', console.error))
     .pipe(rename({
       dirname: '',
       extname: '.min.js'

@@ -26,7 +26,7 @@
 @white-color:            #fff;
 
 @ku-light-grey:          #606060;
-@ku-search-icons:        #b6b6b6;
+@ku-search-icons:        @gray-666;
 @ku-news-gray:           #4a4949;
 @ku-footer-icon-bg:      #757575;
 @ku-footer-icon-size:    28px;
@@ -212,13 +212,13 @@
 //## Specify custom location and filename of the included Glyphicons icon font. Useful for those including Bootstrap via Bower.
 
 //** Load fonts from this directory.
-@icon-font-path:          "../fonts/";
+@icon-font-path:           "https://cms.ku.dk/styling/fonts/";//"../fonts/";
 //** File name for all font files.
 @icon-font-name:          "glyphicons-halflings-regular";
 //** Element ID within SVG icon file.
 @icon-font-svg-id:        "glyphicons_halflingsregular";
 //** Custom KU icon font.
-@custom-icon-font-path:   "https://bootstrap.secure.ku.dk/fonts/";
+@custom-icon-font-path:   "https://cms.ku.dk/styling/fonts/";
 @custom-icon-font-family-name: "ku-symbols";
 @custom-icon-font-name:   "KU";
 //** Element ID within SVG icon file for KU custom font.
@@ -295,7 +295,9 @@
 //
 //## For each of Bootstrap's buttons, define text, background and border color.
 
-@btn-font-weight:                normal;
+// KU specific:
+@btn-letter-spacing:              .7px;
+@btn-font-weight:                600;
 
 @btn-default-color:              @gray-dark;
 @btn-default-bg:                 #f4f4f4;
@@ -356,7 +358,7 @@
 @input-border-focus:             #66afe9;
 
 //** Placeholder text color
-@input-color-placeholder:        #999;
+@input-color-placeholder:        #757575;
 
 //** Default `.form-control` height
 @input-height-base:              (@line-height-computed + (@padding-base-vertical * 2) + 2);
@@ -482,6 +484,7 @@
 @grid-gutter-height:        23px;
 // KU specific:
 @grid-gutter-by-half:       floor((@grid-gutter-width / 2));
+@mobile-grid-gutter-width:  6px;
 @default-col-width:         235px;
 
 // Navbar collapse
@@ -607,12 +610,6 @@
 @nav-pills-active-link-hover-color:         @component-active-color;
 
 @ku-nav-tabs-and-pills-hover-bg-color:      #e7e7e7;
-
-//== KU branding box and logo height
-//
-//##
-
-@ku-branding-box-height:                 83px;
 
 //== KU left menu
 //
@@ -871,7 +868,7 @@
 @panel-body-padding:          10px;
 @panel-heading-padding:       6px 10px;
 // KU specific
-@panel-bokstop-heading-padding: 8px 0;
+@panel-bokstop-heading-padding: 0 0 8px;
 @panel-footer-padding:        6px 10px;
 @panel-border-radius:         @border-radius-base;
 

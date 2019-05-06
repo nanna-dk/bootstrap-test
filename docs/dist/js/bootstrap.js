@@ -1904,22 +1904,22 @@ function shareURL(dest) {
     });
   }
 
-  // Function to make parent items in global menu clickable although they hold dropdown menus. Add class 'disabled' for desktop only:
+  // Function to make parent items in global menu clickable although they hold dropdown menus. Add class 'disabled':
   function makeGlobalMenuClickable() {
-    if (window.matchMedia('(min-width: 768px)').matches) {
-      var $menu = $('#navbar_menu li.dropdown');
-      $menu.each(function () {
-        $(this).children('.dropdown-toggle').addClass('disabled');
-      });
-    }
+    var $menu = $('#navbar_menu li.dropdown');
+    $menu.each(function () {
+      $(this).children('.dropdown-toggle').addClass('disabled');
+    });
   }
   makeGlobalMenuClickable();
 
   // Show/hide scroller if it exists
   function scrollFunction() {
     var $scroll = $('#scrolltop');
+    // multiple checks for browser compatibility:
+    var $scollPosition = window.pageYOffset !== 'undefined' ? window.pageYOffset : document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop ? document.body.scrollTop : 0;
     if ($scroll) {
-      if (document.documentElement.scrollTop > 60) {
+      if ($scollPosition > 60) {
         $scroll.addClass('in');
       } else {
         $scroll.removeClass('in');
@@ -1946,4 +1946,3 @@ function shareURL(dest) {
   });
 
 })(jQuery);
-//# sourceMappingURL=bootstrap.js.map

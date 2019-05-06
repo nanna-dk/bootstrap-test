@@ -22,7 +22,11 @@
     width: 100%;
     border: 0;
   }
+  &+ .embed-responsive {
+    margin-top: @grid-gutter-height;
+  }
 }
+
 // Modifier class for 16:9 aspect ratio
 
 .embed-responsive-16by9 {
@@ -47,7 +51,7 @@
 }
 
 .media-controls button {
-  font-size: 20px;
+  font-size: 16px;
   margin-right: 5px;
 }
 
@@ -65,4 +69,32 @@
     font-size: inherit;
     margin-right: 3px;
   }
+}
+// Make input range visible in IE - why, oh why...
+
+input[type=range]::-ms-track {
+  width: 200px;
+  height: 10px;
+  background: transparent;
+  border-color: transparent;
+  border-width: 6px 0;
+  color: transparent;
+}
+
+input[type=range]::-ms-thumb {
+  border: none;
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  background: @gray-ddd;
+}
+
+input[type=range]::-ms-fill-upper {
+  background: @gray-ddd;
+  border-radius: 6px;
+}
+
+input[type=range]::-ms-fill-lower {
+  background: @gray-ddd;
+  border-radius: 6px;
 }
