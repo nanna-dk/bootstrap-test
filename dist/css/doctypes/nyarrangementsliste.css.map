@@ -1,1 +1,0 @@
-{"version":3,"sources":["nyarrangementsliste.css"],"names":[],"mappings":"AAAA,qDACE,cAAA,IACA,aAAA","file":"nyarrangementsliste.css","sourcesContent":[".cal-sorting [class*=\"col-\"]:first-child .form-control {\n  padding-right: 1px;\n  padding-left: 5px;\n}\n"]}

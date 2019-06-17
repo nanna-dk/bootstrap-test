@@ -1,1 +1,0 @@
-{"version":3,"sources":["forside.css"],"names":[],"mappings":"AAAA,aACE,QAAA,KAGF,IACA,GACE,WAAA,KAGF,4BACE,WAAA","file":"forside.css","sourcesContent":[".breadcrumbs {\n  display: none;\n}\n\n.h1,\nh1 {\n  margin-top: 20px;\n}\n\n#main-content>p:first-child {\n  margin-top: 0;\n}\n"]}

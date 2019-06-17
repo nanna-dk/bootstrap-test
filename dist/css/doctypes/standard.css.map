@@ -1,1 +1,0 @@
-{"version":3,"sources":["standard.css"],"names":[],"mappings":"AACA,8CACE,WAAA","file":"standard.css","sourcesContent":["/* If h1 is not the first element of the page after breadcrumbs, give it more top margin */\n.main-content>.breadcrumbs+*~h1:first-of-type {\n  margin-top: 20px;\n}\n"]}

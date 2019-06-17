@@ -1,1 +1,0 @@
-{"version":3,"sources":["encyclopediaentry.css"],"names":[],"mappings":"AAAA,iCACE,YACE,WAAA","file":"encyclopediaentry.css","sourcesContent":["@media all and (max-width: 768px) {\n  .nyhedsdato {\n    margin-top: 23px;\n  }\n}\n"]}

@@ -1,1 +1,0 @@
-{"version":3,"sources":["pureportal.css"],"names":[],"mappings":"AACA,mCAEA,WAAA,mBACE,MAAA,QAGF,SACE,YAAA","file":"pureportal.css","sourcesContent":["/* Publikationslister - CURIS/Pure  */\n@import url(\"publikationsliste.css\");\n\nh2.title a, h2.title a:visited {\n  color: #252525;\n}\n\nh2.title {\n  font-weight: 600;\n}\n"]}
